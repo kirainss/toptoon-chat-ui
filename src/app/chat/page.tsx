@@ -128,10 +128,10 @@ export default function ChatPage() {
           {/* 이미지 */}
           <div className="flex-1 relative overflow-hidden cursor-pointer" style={{ perspective: "1200px" }} onClick={() => flipToImage((currentImg + 1) % character.images.length)}>
             <img src={character.images[nextImg]} alt={character.name} className="absolute inset-0 w-full h-full object-cover object-top" />
-            {nextImg === 1 && <img src="/webp/fx.webp" alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" />}
+            <video src="/webp/fx.webm" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
             <div className={`absolute inset-0 ${isFlipping ? "page-flip-lr" : ""}`}>
               <img src={character.images[currentImg]} alt={character.name} className="absolute inset-0 w-full h-full object-cover object-top" />
-              {currentImg === 1 && <img src="/webp/fx.webp" alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" />}
+              <video src="/webp/fx.webm" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
             </div>
           </div>
         </div>
@@ -194,11 +194,11 @@ export default function ChatPage() {
         <div className="flex-1 relative overflow-hidden" style={{ perspective: "1200px" }} onClick={() => flipToImage((currentImg + 1) % character.images.length)}>
         {/* 다음 이미지 (뒤에 깔림) */}
         <img src={character.images[nextImg]} alt={character.name} className="absolute inset-0 w-full h-full object-cover object-top" />
-        {nextImg === 1 && <img src="/webp/fx.webp" alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" />}
+        <video src="/webp/fx.webm" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
         {/* 현재 이미지 (책장 넘기기) */}
         <div className={`absolute inset-0 ${isFlipping ? "page-flip-lr" : ""}`}>
           <img src={character.images[currentImg]} alt={character.name} className="absolute inset-0 w-full h-full object-cover object-top" />
-          {currentImg === 1 && <img src="/webp/fx.webp" alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" />}
+          <video src="/webp/fx.webm" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
         </div>
         <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
 

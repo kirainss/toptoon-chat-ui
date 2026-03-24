@@ -36,7 +36,7 @@ export default function Home() {
   const bannerSlides = [
     { img: "/webp/hero-bnr-01.webp", badge: "인기캐릭터", title: "오빠가 오늘 밤\n책임져 주세요", sub: "<무선 연결 오나홀> 신아영", promo: false },
     { img: "/images/mainbnr-promo-01.jpg", badge: "", title: "", sub: "", promo: true },
-    { img: "/images/mainbnr-02.jpg", badge: "인기캐릭터", title: "이제 날 어떻게\n할거야?", sub: "<동아리> 한나리", promo: false },
+    { img: "/webp/hero-bnr-02.webp", badge: "인기캐릭터", title: "이제 날 어떻게\n할거야?", sub: "<동아리> 한나리", promo: false },
     { img: "/images/mainbnr-promo-02.jpg", badge: "", title: "", sub: "", promo: true },
     { img: "/images/mainbnr-03.jpg", badge: "인기캐릭터", title: "너만 바라보고\n있었어", sub: "<룸메이트> 윤혜윤", promo: false },
     { img: "/images/mainbnr-promo-03.jpg", badge: "", title: "", sub: "", promo: true },
