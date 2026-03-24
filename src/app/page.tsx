@@ -307,7 +307,7 @@ export default function Home() {
           <section>
             <div className="mb-3 md:mb-6 flex items-center gap-2">
               <div className="flex items-center gap-1">
-                <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight">인기 캐릭터</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight">b인기 캐릭터</h3>
                 <div ref={fireRef} className="w-6 h-6 -mt-1 md:w-7 md:h-7 opacity-90" />
               </div>
               <p className="hidden md:block text-[13px] text-[#A3A3A3] font-medium">지금까지 <span className="text-white font-bold">14,242</span>번의 화끈한 대화가 오갔어요</p>
