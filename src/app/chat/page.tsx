@@ -34,18 +34,50 @@ export default function ChatPage() {
   const [currentImg, setCurrentImg] = useState(0);
   const [nextImg, setNextImg] = useState(1);
   const [isFlipping, setIsFlipping] = useState(false);
+  const [flashKey, setFlashKey] = useState(0); /*260325 추가*/
   const [activeMode, setActiveMode] = useState<"일상톡" | "설렘톡">("설렘톡");
   const [inputValue, setInputValue] = useState("");
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => { chatEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, []);
 
-  /* 책장 넘기기 이미지 전환 */
+  /* fx 영상 재생 — reveal 전용 (로드 대기 포함) */ /*260325 수정*/
+  const playFxGroup = (group: string) => {
+    document.querySelectorAll<HTMLVideoElement>(`video[data-fx="${group}"]`).forEach((v) => {
+      v.pause(); v.currentTime = 0; v.style.opacity = "1"; /*260325 수정*/
+      const doPlay = () => { const p = v.play(); if (p) p.catch(() => {}); v.onended = () => { v.style.opacity = "0"; }; }; /*260325 수정*/
+      if (v.readyState >= 3) { doPlay(); } else { v.addEventListener("canplaythrough", doPlay, { once: true }); v.load(); } /*260325 수정*/
+    });
+  };
+
+  /* 최초 이미지 로드 시 빛 효과 재생 */ /*260325 수정*/
+  useEffect(() => {
+    const fxVideos = document.querySelectorAll<HTMLVideoElement>("video[data-fx]"); /*260325 수정*/
+    fxVideos.forEach((v) => { v.style.opacity = "0"; v.load(); }); /* load() 강제 호출 */ /*260325 수정*/
+    let triggered = false;
+    const triggerReveal = () => {
+      if (triggered) return;
+      triggered = true;
+      requestAnimationFrame(() => playFxGroup("reveal")); /*260325 수정*/
+    };
+    const img = new Image();
+    img.src = character.images[0];
+    if (img.complete) { triggerReveal(); } else { img.onload = triggerReveal; } /*260325 수정*/
+    const fallback = setTimeout(triggerReveal, 1000); /*260325 수정*/
+    return () => clearTimeout(fallback);
+  }, []);
+
+  /* 책장 넘기기 이미지 전환 — 화이트 플래시 + reveal */ /*260325 수정*/
   const flipToImage = (targetIdx: number) => {
     if (isFlipping || targetIdx === currentImg) return;
+    setFlashKey(k => k + 1); /* 넘기기 전 하얀 빛 */ /*260325 수정*/
     setNextImg(targetIdx);
     setIsFlipping(true);
-    setTimeout(() => { setCurrentImg(targetIdx); setIsFlipping(false); }, 1100);
+    setTimeout(() => {
+      setCurrentImg(targetIdx);
+      setIsFlipping(false);
+      playFxGroup("reveal"); /* 즉시 재생 */ /*260325 수정*/
+    }, 1100);
   };
   /* 자동 플립 — 8초 간격 */
   useEffect(() => {
@@ -128,10 +160,14 @@ export default function ChatPage() {
           {/* 이미지 */}
           <div className="flex-1 relative overflow-hidden cursor-pointer" style={{ perspective: "1200px" }} onClick={() => flipToImage((currentImg + 1) % character.images.length)}>
             <img src={character.images[nextImg]} alt={character.name} className="absolute inset-0 w-full h-full object-cover object-top" />
-            <video src="/webp/fx.webm" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
             <div className={`absolute inset-0 ${isFlipping ? "page-flip-lr" : ""}`}>
               <img src={character.images[currentImg]} alt={character.name} className="absolute inset-0 w-full h-full object-cover object-top" />
-              <video src="/webp/fx.webm" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
+              <div key={flashKey} className={`absolute inset-0 bg-white pointer-events-none ${flashKey > 0 ? "light-flash" : "opacity-0"}`} /> {/*260325 수정 — 페이지와 함께 넘어감*/}
+            </div>
+            <video data-fx="reveal" src="/webp/fx.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full object-cover pointer-events-none mix-blend-overlay z-[2]" /> {/*260325 수정*/}
+            {/* 프리미엄 배지 */}
+            <div className="absolute top-3 left-3 z-20">
+              <span className="text-[14px] font-bold px-3 py-1.5 rounded-full border border-[#8B6914]/30" style={{ backgroundColor: "rgba(59,35,10,.8)", WebkitBackgroundClip: "padding-box" }}><span style={{ background: "linear-gradient(135deg, #ffe184, #ffc11b)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>프리미엄</span></span>
             </div>
           </div>
         </div>
@@ -194,17 +230,17 @@ export default function ChatPage() {
         <div className="flex-1 relative overflow-hidden" style={{ perspective: "1200px" }} onClick={() => flipToImage((currentImg + 1) % character.images.length)}>
         {/* 다음 이미지 (뒤에 깔림) */}
         <img src={character.images[nextImg]} alt={character.name} className="absolute inset-0 w-full h-full object-cover object-top" />
-        <video src="/webp/fx.webm" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
         {/* 현재 이미지 (책장 넘기기) */}
         <div className={`absolute inset-0 ${isFlipping ? "page-flip-lr" : ""}`}>
           <img src={character.images[currentImg]} alt={character.name} className="absolute inset-0 w-full h-full object-cover object-top" />
-          <video src="/webp/fx.webm" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
+          <div key={flashKey} className={`absolute inset-0 bg-white pointer-events-none ${flashKey > 0 ? "light-flash" : "opacity-0"}`} /> {/*260325 수정 — 페이지와 함께 넘어감*/}
         </div>
+        <video data-fx="reveal" src="/webp/fx.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full object-cover pointer-events-none mix-blend-overlay z-[2]" /> {/*260325 수정*/}
         <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
 
         {/* 프리미엄 배지 + 이미지 선택 */}
         <div className="absolute top-3 inset-x-3 z-20 flex items-center justify-between">
-          <span className="bg-[#3D2B1F] text-[12px] font-bold px-3 py-1.5 rounded-full border border-[#8B6914]/30" style={{ backgroundImage: "linear-gradient(135deg, #3D2B1F, #4A3322)", WebkitBackgroundClip: "padding-box" }}><span style={{ background: "linear-gradient(135deg, #ffe184, #ffc11b, #ffe593)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>프리미엄</span></span>
+          <span className="text-[14px] font-bold px-3 py-1.5 rounded-full border border-[#8B6914]/30" style={{ backgroundColor: "rgba(59,35,10,.8)", WebkitBackgroundClip: "padding-box" }}><span style={{ background: "linear-gradient(135deg, #ffe184, #ffc11b)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>프리미엄</span></span>
           <button className="flex items-center gap-1.5 bg-[#4A3F38]/90 text-white/90 text-[13px] font-medium px-3 py-1.5 rounded-full backdrop-blur-sm">
             <ImageIcon className="w-4 h-4" /> {currentImg + 1}/{character.images.length} <ChevronDown className="w-3.5 h-3.5" />
           </button>

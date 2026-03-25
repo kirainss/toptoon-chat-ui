@@ -34,11 +34,12 @@ export default function Home() {
 
   // 배너 슬라이드 데이터
   const bannerSlides = [
-    { img: "/webp/hero-bnr-01.webp", badge: "인기캐릭터", title: "오빠가 오늘 밤\n책임져 주세요", sub: "<무선 연결 오나홀> 신아영", promo: false },
+    { img: "/mp4/hero-bnr-01.mp4", badge: "인기캐릭터", title: "오빠가 오늘 밤\n책임져 주세요", sub: "<무선 연결 오나홀> 신아영", promo: false }, /*260325 수정*/
     { img: "/images/mainbnr-promo-01.jpg", badge: "", title: "", sub: "", promo: true },
-    { img: "/webp/hero-bnr-02.webp", badge: "인기캐릭터", title: "이제 날 어떻게\n할거야?", sub: "<동아리> 한나리", promo: false },
+    { img: "/mp4/hero-bnr-02.mp4", badge: "인기캐릭터", title: "나한테 중요한 건\n네 행복이야", sub: "<건물주 누나> 서나리", promo: false }, /*260325 수정*/
     { img: "/images/mainbnr-promo-02.jpg", badge: "", title: "", sub: "", promo: true },
-    { img: "/images/mainbnr-03.jpg", badge: "인기캐릭터", title: "너만 바라보고\n있었어", sub: "<룸메이트> 윤혜윤", promo: false },
+    { img: "/mp4/hero-bnr-04.mp4", badge: "신규캐릭터", title: "버리지 말아 주세요,\n주인님...", sub: "<이세계 밀프헌터> 세실리아", promo: false }, /*260325 수정*/
+    { img: "/mp4/hero-bnr-03.mp4", badge: "신규캐릭터", title: "저한테 이러시면\n안 되는 거잖아요!!", sub: "<집주인 딸내미> 장선영", promo: false }, /*260325 수정*/
     { img: "/images/mainbnr-promo-03.jpg", badge: "", title: "", sub: "", promo: true },
   ];
   const bannerCount = bannerSlides.length;
@@ -55,6 +56,8 @@ export default function Home() {
   const [slidePos, setSlidePos] = useState(3);
   const [transitionOn, setTransitionOn] = useState(true);
   const bannerIndex = ((slidePos - 3) % bannerCount + bannerCount) % bannerCount;
+
+  /* animated webp canvas 로직 제거 - mp4 video로 대체 */ /*260325 수정*/
 
   const goNext = useCallback(() => { setTransitionOn(true); setSlidePos(p => p + 1); }, []);
   const goPrev = useCallback(() => { setTransitionOn(true); setSlidePos(p => p - 1); }, []);
@@ -83,21 +86,32 @@ export default function Home() {
   }, [goNext, slidePos]);
 
   const dragStartX = useRef(0);
+  const isDragging = useRef(false);
   const handleTouchStart = useCallback((e: React.TouchEvent) => { dragStartX.current = e.touches[0].clientX; }, []);
   const handleTouchEnd = useCallback((e: React.TouchEvent) => {
     const d = dragStartX.current - e.changedTouches[0].clientX;
     if (Math.abs(d) > 50) d > 0 ? goNext() : goPrev();
   }, [goNext, goPrev]);
-  const handleMouseDown = useCallback((e: React.MouseEvent) => { dragStartX.current = e.clientX; }, []);
-  const handleMouseUp = useCallback((e: React.MouseEvent) => {
-    const d = dragStartX.current - e.clientX;
-    if (Math.abs(d) > 50) d > 0 ? goNext() : goPrev();
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    dragStartX.current = e.clientX;
+    isDragging.current = false;
+    const onUp = (ev: MouseEvent) => {
+      window.removeEventListener("mouseup", onUp);
+      const d = dragStartX.current - ev.clientX;
+      if (Math.abs(d) > 40) { isDragging.current = true; d > 0 ? goNext() : goPrev(); }
+    };
+    window.addEventListener("mouseup", onUp, { once: true });
   }, [goNext, goPrev]);
+  const handleCardClick = useCallback((i: number) => {
+    if (isDragging.current) return;
+    if (i < slidePos) goPrev(); else if (i > slidePos) goNext();
+  }, [slidePos, goNext, goPrev]);
 
   const popularCharacters = [
     { id: 1, name: "신아영", quote: `"제발 멈춰줘요... 남들이 보..."`, chats: "9.6천", views: "5.1만", img: "/images/thumb-char-01.jpg" },
-    { id: 2, name: "한나리", quote: `"누나랑 하루 종일 침대에서..."`, chats: "6.1천", views: "3.7만", img: "/images/thumb-char-02.jpg" },
-    { id: 3, name: "윤혜윤", quote: `"오빠... 오늘 안전한 날이야..."`, chats: "4.3천", views: "2.6만", img: "/images/thumb-char-03.jpg" },
+    { id: 2, name: "배현주", quote: `"네가 해주는 마사지, 정말..."`, chats: "6.1천", views: "3.7만", img: "/images/thumb-char-02.jpg" },
+    { id: 3, name: "서나리", quote: `"오빠... 오늘 안전한 날이야..."`, chats: "4.3천", views: "2.6만", img: "/images/thumb-char-03.jpg" },
     { id: 4, name: "배현주", quote: `"네가 해주는 마사지, 정말..."`, chats: "4만", views: "2.2만", img: "/images/thumb-char-04.jpg" },
     { id: 5, name: "서나리", quote: `"딱 일주일만이야... 알겠지?"`, chats: "3.3천", views: "2.0만", img: "/images/thumb-char-05.jpg" },
     { id: 6, name: "김가을", quote: `"나 예뻐? 나랑 놀래?"`, chats: "2.1천", views: "1.2만", img: "/images/thumb-char-01.jpg" },
@@ -223,7 +237,7 @@ export default function Home() {
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           onMouseDown={handleMouseDown}
-          onMouseUp={handleMouseUp}
+
         >
           <div
             className="flex w-full h-full"
@@ -235,15 +249,19 @@ export default function Home() {
           >
             {extSlides.map((slide, i) => (
               <div key={i} className="relative w-full h-full" style={{ flex: "0 0 100%" }}>
-                <img src={slide.img} alt={slide.badge} className="absolute inset-0 w-full h-full object-cover object-top" draggable={false} />
+                {slide.img.endsWith(".mp4") ? ( /*260325 수정*/
+                  <video src={slide.img} className="absolute inset-0 w-full h-full object-cover object-top" autoPlay loop muted playsInline draggable={false} />
+                ) : (
+                  <img src={slide.img} alt={slide.badge} className="absolute inset-0 w-full h-full object-cover object-top" draggable={false} />
+                )}
               </div>
             ))}
           </div>
           {!bannerSlides[bannerIndex].promo && (
             <>
               <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/70 to-transparent pointer-events-none" />
-              <div className="absolute bottom-12 left-5 flex flex-col gap-1.5 pointer-events-none z-10">
-                <span className="bg-black text-white text-[10px] font-bold px-2 py-1 rounded w-fit">{bannerSlides[bannerIndex].badge}</span>
+              <div className="absolute bottom-5 left-5 flex flex-col gap-1.5 pointer-events-none z-10"> {/*260325 수정*/}
+                <span className={`${bannerSlides[bannerIndex].badge === "신규캐릭터" ? "badge-new" : "bg-black"} text-white text-[10px] font-bold px-2 py-1 rounded w-fit`}>{bannerSlides[bannerIndex].badge}</span>
                 <h2 className="text-[20px] font-semibold text-white leading-tight mt-1 drop-shadow-md whitespace-pre-line break-keep">{bannerSlides[bannerIndex].title}</h2>
                 <p className="text-[#D4D4D4] text-[11px] font-medium drop-shadow">{bannerSlides[bannerIndex].sub}</p>
               </div>
@@ -258,14 +276,14 @@ export default function Home() {
 
         {/* Desktop Banner Carousel */}
         <section
-          className="hidden md:block w-full mb-14 mt-4 overflow-hidden"
+          className="hidden md:block w-full mb-14 mt-4 overflow-hidden py-6" /*260325 수정*/
           onMouseDown={handleMouseDown}
-          onMouseUp={handleMouseUp}
+
         >
           <div
-            className="flex gap-4 w-full"
+            className="flex gap-0 w-full" /*260325 수정*/
             style={{
-              transform: `translateX(calc(${25 - slidePos * 50}% - ${slidePos * 16}px))`,
+              transform: `translateX(${25 - slidePos * 50}%)`, /*260325 수정*/
               transition: transitionOn ? "transform 0.5s ease-in-out" : "none",
             }}
             onTransitionEnd={handleSlideEnd}
@@ -275,18 +293,22 @@ export default function Home() {
               return (
                 <div
                   key={i}
-                  onClick={() => { if (i < slidePos) goPrev(); else if (i > slidePos) goNext(); }}
-                  className={`relative flex-shrink-0 rounded-2xl overflow-hidden cursor-pointer bg-[#1A1A1A] select-none transition-opacity duration-500 ${isActive ? "ring-1 ring-white/10 z-10" : "opacity-50 hover:opacity-70"}`}
-                  style={{ width: "50%", aspectRatio: "750 / 390" }}
+                  onClick={() => handleCardClick(i)}
+                  className={`relative flex-shrink-0 rounded-2xl overflow-hidden cursor-pointer bg-[#1A1A1A] select-none transition-all duration-500 ease-in-out ${isActive ? "ring-1 ring-white/10 z-10" : "opacity-50 hover:opacity-70"}`}
+                  style={{ width: "50%", maxWidth: "750px", aspectRatio: "750 / 390", transform: isActive ? "scale(1.1)" : "scale(0.85)" }} /*260325 수정*/
                 >
-                  <img src={slide.img} alt={slide.badge} className={`absolute inset-0 w-full h-full object-cover ${isActive ? "transition-transform duration-700 ease-out hover:scale-105" : ""}`} loading="lazy" draggable={false} />
+                  {slide.img.endsWith(".mp4") ? ( /*260325 수정*/
+                    <video src={slide.img} className="absolute inset-0 w-full h-full object-cover" autoPlay={isActive} loop muted playsInline draggable={false} ref={el => { if (el) { if (isActive) { el.play(); } else { el.pause(); el.currentTime = 0; } } }} />
+                  ) : (
+                    <img src={slide.img} alt={slide.badge} className="absolute inset-0 w-full h-full object-cover" loading={isActive ? undefined : "lazy"} draggable={false} />
+                  )}
                   {!isActive && <div className="absolute inset-0 bg-black/40" />}
                   {isActive && !slide.promo && (
                     <>
                       <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/60 to-transparent" />
                       <div className="absolute bottom-6 left-6 lg:bottom-8 lg:left-8 flex flex-col gap-1.5 lg:gap-2 z-10 w-fit pointer-events-none">
-                        <span className="bg-black text-white text-[10px] lg:text-[11px] font-bold px-2 py-0.5 rounded w-fit">{slide.badge}</span>
-                        <h2 className="text-xl lg:text-3xl font-semibold text-white leading-tight tracking-tight mt-1 whitespace-pre-line">{slide.title}</h2>
+                        <span className={`${slide.badge === "신규캐릭터" ? "badge-new" : "bg-black"} text-white text-[10px] lg:text-[11px] font-bold px-2 py-0.5 rounded w-fit`}>{slide.badge}</span>
+                        <h2 className="text-lg lg:text-2xl font-semibold text-white leading-tight tracking-tight mt-1 whitespace-pre-line">{slide.title}</h2> {/*260325 수정*/}
                         <p className="text-[#D4D4D4] text-sm lg:text-base font-medium">{slide.sub}</p>
                       </div>
                     </>
@@ -295,7 +317,7 @@ export default function Home() {
               );
             })}
           </div>
-          <div className="flex justify-center items-center gap-1.5 mt-5">
+          <div className="flex justify-center items-center gap-1.5 mt-8"> {/*260325 수정*/}
             {bannerSlides.map((_, i) => (
               <span key={i} onClick={() => goTo(i)} className={`rounded-full transition-all duration-300 cursor-pointer ${i === bannerIndex ? "w-5 h-1.5 bg-white" : "w-1.5 h-1.5 bg-white/40"}`} />
             ))}
@@ -307,7 +329,7 @@ export default function Home() {
           <section>
             <div className="mb-3 md:mb-6 flex items-center gap-2">
               <div className="flex items-center gap-1">
-                <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight">b인기 캐릭터</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight">인기 캐릭터</h3>
                 <div ref={fireRef} className="w-6 h-6 -mt-1 md:w-7 md:h-7 opacity-90" />
               </div>
               <p className="hidden md:block text-[13px] text-[#A3A3A3] font-medium">지금까지 <span className="text-white font-bold">14,242</span>번의 화끈한 대화가 오갔어요</p>

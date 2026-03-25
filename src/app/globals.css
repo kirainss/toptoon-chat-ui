@@ -76,3 +76,11 @@
 @keyframes pageFlipLR { 0% { transform: rotateY(0deg); } 40% { box-shadow: 10px 0 20px rgba(0,0,0,.35); } 100% { transform: rotateY(-105deg); box-shadow: none; } } /*260324 수정*/
 .page-flip-lr { animation: pageFlipLR 1100ms cubic-bezier(0.4, 0, 0.2, 1) forwards; transform-origin: left center; backface-visibility: hidden; } /*260324 수정*/
 @media (prefers-reduced-motion: reduce) { .page-flip-lr { animation: none; } } /*260324 수정*/
+
+/* 이미지 빛 효과 (화이트 플래시) */ /*260325 추가*/
+@keyframes lightFlash { 0% { opacity: 0; } 15% { opacity: 0.55; } 100% { opacity: 0; } } /*260325 추가*/
+.light-flash { animation: lightFlash 0.8s ease-out forwards; } /*260325 추가*/
+@media (prefers-reduced-motion: reduce) { .light-flash { animation: none; } } /*260325 추가*/
+
+/* 신규캐릭터 뱃지 */ /*260325 수정*/
+@layer utilities { .badge-new { background: linear-gradient(110deg, #EE2C39 40%, #ff6b6b 50%, #EE2C39 60%) !important; background-size: 200% 100% !important; box-shadow: 0 0 12px rgba(238,44,57,.5), 0 2px 6px rgba(0,0,0,.3); } } /*260325 수정*/
