@@ -1,4 +1,0 @@
-:HL["/_next/static/chunks/23c5cb74ec15de64.css","style"]
-:HL["/images/logo/logo.svg","image"]
-:HL["/images/chatCoin.png","image"]
-0:{"buildId":"OBLlC60UcsQY17L3QazlH","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
