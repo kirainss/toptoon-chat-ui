@@ -9,7 +9,7 @@ const character = {
   tags: ["#우니들", "#우산먼물리나들", "#신아영", "#클라카", "#글라피", "#노벨피아 원작"],
   views: "221,302", chats: "19,875", likes: "356",
   avatar: "/images/thumb-char-01.jpg",
-  images: ["/images/img-chat-01.webp", "/images/img-chat-02.webp"],
+  images: ["/images/img-chat-01.webp", "/images/img-chat-01.webp"],
   bio: "학교에서 모든 이의 시선을 끄는 완벽한 현카, 신아영. 누구도 눈빛만으로 넘어갈 수 있는 노련한 미소를 지은 그녀, 하지만 그 미소의 뒤를 들여다 보면 남들과는 다른 비밀의 정원이 숨...",
 };
 
