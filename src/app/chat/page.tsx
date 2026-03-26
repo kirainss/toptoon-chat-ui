@@ -159,15 +159,15 @@ export default function ChatPage() {
             </button>
           </div>
           {/* 이미지 */}
-          <div className="flex-1 relative overflow-hidden cursor-pointer" style={{ perspective: "1200px" }} onClick={() => flipToImage((currentImg + 1) % character.images.length)}>
+          <div className="flex-1 relative overflow-hidden cursor-pointer isolate" style={{ perspective: "1200px" }} onClick={() => flipToImage((currentImg + 1) % character.images.length)}>
             <img src={character.images[nextImg]} alt={character.name} className="absolute inset-0 w-full h-full object-cover object-top" />
             <div className={`absolute inset-0 ${isFlipping ? "page-flip-lr" : ""}`}>
               <img src={character.images[currentImg]} alt={character.name} className="absolute inset-0 w-full h-full object-cover object-top" />
               <div key={flashKey} className={`absolute inset-0 bg-white pointer-events-none ${flashKey > 0 ? "light-flash" : "opacity-0"}`} /> {/*260325 수정 — 페이지와 함께 넘어감*/}
             </div>
-            <video data-fx="reveal-std" src="/webp/fx-premium.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen z-[2]" style={{ objectFit: "fill" }} /> {/*260326 수정*/}
-            <video data-fx="reveal-edge" src="/webp/fx-exclusive-edge.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen z-[2]" style={{ objectFit: "fill" }} /> {/*260326 수정*/}
-            <video data-fx="reveal-ex" src="/webp/fx-exclusive.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen z-[2]" style={{ objectFit: "fill" }} /> {/*260326 수정*/}
+            <video data-fx="reveal-std" src="/webp/fx-premium.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-overlay z-[2]" style={{ objectFit: "fill" }} /> {/*260326 수정*/}
+            <video data-fx="reveal-edge" src="/webp/fx-exclusive-edge.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-overlay z-[2]" style={{ objectFit: "fill" }} /> {/*260326 수정*/}
+            <video data-fx="reveal-ex" src="/webp/fx-exclusive.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-overlay z-[2]" style={{ objectFit: "fill" }} /> {/*260326 수정*/}
             {/* 이미지별 배지 */}
             <div className="absolute top-3 left-3 z-20"> {/*260326 수정*/}
               <span className="text-[14px] font-bold px-3 py-1.5 rounded-full border" style={{ backgroundColor: currentImg === 0 ? "rgba(59,35,10,.8)" : "rgba(16,37,23,.8)", borderColor: currentImg === 0 ? "rgba(139,105,20,0.3)" : "rgba(60,140,80,0.3)" }}><span className={currentImg === 0 ? "badge-text-premium" : "badge-text-ex"}>{currentImg === 0 ? "프리미엄" : "익스클루시브"}</span></span> {/*260326 수정*/}
@@ -230,7 +230,7 @@ export default function ChatPage() {
         </div>
 
         {/* 전체 배경 이미지 (헤더 아래 영역) */}
-        <div className="flex-1 relative overflow-hidden" style={{ perspective: "1200px" }} onClick={() => flipToImage((currentImg + 1) % character.images.length)}>
+        <div className="flex-1 relative overflow-hidden isolate" style={{ perspective: "1200px" }} onClick={() => flipToImage((currentImg + 1) % character.images.length)}>
         {/* 다음 이미지 (뒤에 깔림) */}
         <img src={character.images[nextImg]} alt={character.name} className="absolute inset-0 w-full h-full object-cover object-top" />
         {/* 현재 이미지 (책장 넘기기) */}
@@ -238,9 +238,9 @@ export default function ChatPage() {
           <img src={character.images[currentImg]} alt={character.name} className="absolute inset-0 w-full h-full object-cover object-top" />
           <div key={flashKey} className={`absolute inset-0 bg-white pointer-events-none ${flashKey > 0 ? "light-flash" : "opacity-0"}`} /> {/*260325 수정 — 페이지와 함께 넘어감*/}
         </div>
-        <video data-fx="reveal-std" src="/webp/fx-premium.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen z-[2]" style={{ objectFit: "fill" }} /> {/*260326 수정*/}
-        <video data-fx="reveal-edge" src="/webp/fx-exclusive-edge.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen z-[2]" style={{ objectFit: "fill" }} /> {/*260326 수정*/}
-        <video data-fx="reveal-ex" src="/webp/fx-exclusive.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen z-[2]" style={{ objectFit: "fill" }} /> {/*260326 수정*/}
+        <video data-fx="reveal-std" src="/webp/fx-premium.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-overlay z-[2]" style={{ objectFit: "fill" }} /> {/*260326 수정*/}
+        <video data-fx="reveal-edge" src="/webp/fx-exclusive-edge.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-overlay z-[2]" style={{ objectFit: "fill" }} /> {/*260326 수정*/}
+        <video data-fx="reveal-ex" src="/webp/fx-exclusive.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-overlay z-[2]" style={{ objectFit: "fill" }} /> {/*260326 수정*/}
         <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
 
         {/* 이미지별 배지 + 이미지 선택 */}
