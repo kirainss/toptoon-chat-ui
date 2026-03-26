@@ -45,6 +45,7 @@ export default function ChatPage() {
   const playFxGroup = (group: string) => {
     document.querySelectorAll<HTMLVideoElement>(`video[data-fx="${group}"]`).forEach((v) => {
       v.pause(); v.currentTime = 0; v.style.opacity = "1"; /*260325 수정*/
+      v.playbackRate = 1.4; /*260325 수정*/
       const doPlay = () => { const p = v.play(); if (p) p.catch(() => {}); v.onended = () => { v.style.opacity = "0"; }; }; /*260325 수정*/
       if (v.readyState >= 3) { doPlay(); } else { v.addEventListener("canplaythrough", doPlay, { once: true }); v.load(); } /*260325 수정*/
     });
@@ -58,7 +59,7 @@ export default function ChatPage() {
     const triggerReveal = () => {
       if (triggered) return;
       triggered = true;
-      requestAnimationFrame(() => playFxGroup("reveal")); /*260325 수정*/
+      requestAnimationFrame(() => playFxGroup("reveal-std")); /*260326 수정 — 이미지0=프리미엄=fx.webm*/
     };
     const img = new Image();
     img.src = character.images[0];
@@ -73,10 +74,10 @@ export default function ChatPage() {
     setFlashKey(k => k + 1); /* 넘기기 전 하얀 빛 */ /*260325 수정*/
     setNextImg(targetIdx);
     setIsFlipping(true);
+    setTimeout(() => { if (targetIdx === 0) { playFxGroup("reveal-std"); } else { playFxGroup("reveal-edge"); playFxGroup("reveal-ex"); } }, 750); /* 프리미엄=fx.webm / 익스클루시브=fx-edge+fx-ex 동시 재생 */ /*260326 수정*/
     setTimeout(() => {
       setCurrentImg(targetIdx);
       setIsFlipping(false);
-      playFxGroup("reveal"); /* 즉시 재생 */ /*260325 수정*/
     }, 1100);
   };
   /* 자동 플립 — 8초 간격 */
@@ -164,10 +165,12 @@ export default function ChatPage() {
               <img src={character.images[currentImg]} alt={character.name} className="absolute inset-0 w-full h-full object-cover object-top" />
               <div key={flashKey} className={`absolute inset-0 bg-white pointer-events-none ${flashKey > 0 ? "light-flash" : "opacity-0"}`} /> {/*260325 수정 — 페이지와 함께 넘어감*/}
             </div>
-            <video data-fx="reveal" src="/webp/fx.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full object-cover pointer-events-none mix-blend-overlay z-[2]" /> {/*260325 수정*/}
-            {/* 프리미엄 배지 */}
-            <div className="absolute top-3 left-3 z-20">
-              <span className="text-[14px] font-bold px-3 py-1.5 rounded-full border border-[#8B6914]/30" style={{ backgroundColor: "rgba(59,35,10,.8)", WebkitBackgroundClip: "padding-box" }}><span style={{ background: "linear-gradient(135deg, #ffe184, #ffc11b)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>프리미엄</span></span>
+            <video data-fx="reveal-std" src="/webp/fx-premium.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-overlay z-[2]" style={{ objectFit: "fill" }} /> {/*260326 수정*/}
+            <video data-fx="reveal-edge" src="/webp/fx-exclusive-edge.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen z-[2]" style={{ objectFit: "fill" }} /> {/*260326 수정*/}
+            <video data-fx="reveal-ex" src="/webp/fx-exclusive.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-overlay z-[2]" style={{ objectFit: "fill" }} /> {/*260326 수정*/}
+            {/* 이미지별 배지 */}
+            <div className="absolute top-3 left-3 z-20"> {/*260326 수정*/}
+              <span className="text-[14px] font-bold px-3 py-1.5 rounded-full border" style={{ backgroundColor: currentImg === 0 ? "rgba(59,35,10,.8)" : "rgba(16,37,23,.8)", borderColor: currentImg === 0 ? "rgba(139,105,20,0.3)" : "rgba(60,140,80,0.3)" }}><span className={currentImg === 0 ? "badge-text-premium" : "badge-text-ex"}>{currentImg === 0 ? "프리미엄" : "익스클루시브"}</span></span> {/*260326 수정*/}
             </div>
           </div>
         </div>
@@ -235,12 +238,14 @@ export default function ChatPage() {
           <img src={character.images[currentImg]} alt={character.name} className="absolute inset-0 w-full h-full object-cover object-top" />
           <div key={flashKey} className={`absolute inset-0 bg-white pointer-events-none ${flashKey > 0 ? "light-flash" : "opacity-0"}`} /> {/*260325 수정 — 페이지와 함께 넘어감*/}
         </div>
-        <video data-fx="reveal" src="/webp/fx.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full object-cover pointer-events-none mix-blend-overlay z-[2]" /> {/*260325 수정*/}
+        <video data-fx="reveal-std" src="/webp/fx-premium.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-overlay z-[2]" style={{ objectFit: "fill" }} /> {/*260326 수정*/}
+        <video data-fx="reveal-edge" src="/webp/fx-exclusive-edge.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen z-[2]" style={{ objectFit: "fill" }} /> {/*260326 수정*/}
+        <video data-fx="reveal-ex" src="/webp/fx-exclusive.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-overlay z-[2]" style={{ objectFit: "fill" }} /> {/*260326 수정*/}
         <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
 
-        {/* 프리미엄 배지 + 이미지 선택 */}
-        <div className="absolute top-3 inset-x-3 z-20 flex items-center justify-between">
-          <span className="text-[14px] font-bold px-3 py-1.5 rounded-full border border-[#8B6914]/30" style={{ backgroundColor: "rgba(59,35,10,.8)", WebkitBackgroundClip: "padding-box" }}><span style={{ background: "linear-gradient(135deg, #ffe184, #ffc11b)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>프리미엄</span></span>
+        {/* 이미지별 배지 + 이미지 선택 */}
+        <div className="absolute top-3 inset-x-3 z-20 flex items-center justify-between"> {/*260326 수정*/}
+          <span className="text-[14px] font-bold px-3 py-1.5 rounded-full border" style={{ backgroundColor: currentImg === 0 ? "rgba(59,35,10,.8)" : "rgba(16,37,23,.8)", borderColor: currentImg === 0 ? "rgba(139,105,20,0.3)" : "rgba(60,140,80,0.3)" }}><span className={currentImg === 0 ? "badge-text-premium" : "badge-text-ex"}>{currentImg === 0 ? "프리미엄" : "익스클루시브"}</span></span> {/*260326 수정*/}
           <button className="flex items-center gap-1.5 bg-[#4A3F38]/90 text-white/90 text-[13px] font-medium px-3 py-1.5 rounded-full backdrop-blur-sm">
             <ImageIcon className="w-4 h-4" /> {currentImg + 1}/{character.images.length} <ChevronDown className="w-3.5 h-3.5" />
           </button>

@@ -34,13 +34,15 @@ export default function Home() {
 
   // 배너 슬라이드 데이터
   const bannerSlides = [
-    { img: "/mp4/hero-bnr-01.mp4", badge: "인기캐릭터", title: "오빠가 오늘 밤\n책임져 주세요", sub: "<무선 연결 오나홀> 신아영", promo: false }, /*260325 수정*/
-    { img: "/images/mainbnr-promo-01.jpg", badge: "", title: "", sub: "", promo: true },
-    { img: "/mp4/hero-bnr-02.mp4", badge: "인기캐릭터", title: "나한테 중요한 건\n네 행복이야", sub: "<건물주 누나> 서나리", promo: false }, /*260325 수정*/
-    { img: "/images/mainbnr-promo-02.jpg", badge: "", title: "", sub: "", promo: true },
-    { img: "/mp4/hero-bnr-04.mp4", badge: "신규캐릭터", title: "버리지 말아 주세요,\n주인님...", sub: "<이세계 밀프헌터> 세실리아", promo: false }, /*260325 수정*/
-    { img: "/mp4/hero-bnr-03.mp4", badge: "신규캐릭터", title: "저한테 이러시면\n안 되는 거잖아요!!", sub: "<집주인 딸내미> 장선영", promo: false }, /*260325 수정*/
-    { img: "/images/mainbnr-promo-03.jpg", badge: "", title: "", sub: "", promo: true },
+    { img: "/mp4/hero-bnr-04.mp4", badge: "신규캐릭터", title: "버리지 말아 주세요,\n주인님...", sub: "<이세계 밀프헌터> 세실리아", promo: false }, /*260326 수정*/
+    { img: "/mp4/hero-bnr-03.mp4", badge: "신규캐릭터", title: "저한테 이러시면\n안 되는 거잖아요!!", sub: "<집주인 딸내미> 장선영", promo: false }, /*260326 수정*/
+    { img: "/mp4/hero-bnr-01.mp4", badge: "인기캐릭터", title: "오빠가 오늘 밤\n책임져 주세요", sub: "<무선 연결 오나홀> 신아영", promo: false }, /*260326 수정*/
+    { img: "/mp4/hero-bnr-02.mp4", badge: "인기캐릭터", title: "나한테 중요한 건\n네 행복이야", sub: "<건물주 누나> 서나리", promo: false }, /*260326 수정*/
+    { img: "/mp4/hero-bnr-05.mp4", badge: "인기캐릭터", title: "오늘... 남편은 출장이야.\n들어올래?", sub: "<세트업> 배현주", promo: false }, /*260326 수정*/
+    { img: "/mp4/hero-bnr-06.mp4", badge: "인기캐릭터", title: "오빠, 나 요가 하는데...\n자세 좀 봐줄 수 있어요?", sub: "<무선 연결 오나홀> 윤혜윤", promo: false }, /*260326 수정*/
+    { img: "/images/mainbnr-promo-01.jpg", poster: "", badge: "", title: "", sub: "", promo: true },
+    { img: "/images/mainbnr-promo-02.jpg", poster: "", badge: "", title: "", sub: "", promo: true },
+    { img: "/images/mainbnr-promo-03.jpg", poster: "", badge: "", title: "", sub: "", promo: true },
   ];
   const bannerCount = bannerSlides.length;
   const extSlides = [
@@ -250,7 +252,7 @@ export default function Home() {
             {extSlides.map((slide, i) => (
               <div key={i} className="relative w-full h-full" style={{ flex: "0 0 100%" }}>
                 {slide.img.endsWith(".mp4") ? ( /*260325 수정*/
-                  <video src={slide.img} className="absolute inset-0 w-full h-full object-cover object-top" autoPlay loop muted playsInline draggable={false} />
+                  <video src={slide.img} preload="auto" className="absolute inset-0 w-full h-full object-cover object-top" autoPlay loop muted playsInline draggable={false} onLoadedMetadata={e => { (e.currentTarget as HTMLVideoElement).currentTime = 0.001; }} />
                 ) : (
                   <img src={slide.img} alt={slide.badge} className="absolute inset-0 w-full h-full object-cover object-top" draggable={false} />
                 )}
@@ -261,7 +263,7 @@ export default function Home() {
             <>
               <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/70 to-transparent pointer-events-none" />
               <div className="absolute bottom-5 left-5 flex flex-col gap-1.5 pointer-events-none z-10"> {/*260325 수정*/}
-                <span className={`${bannerSlides[bannerIndex].badge === "신규캐릭터" ? "badge-new" : "bg-black"} text-white text-[10px] font-bold px-2 py-1 rounded w-fit`}>{bannerSlides[bannerIndex].badge}</span>
+                <span className={`${bannerSlides[bannerIndex].badge === "신규캐릭터" ? "badge-new" : "bg-black"} text-white text-[10px] font-bold px-2 py-0.5 rounded w-fit`}>{bannerSlides[bannerIndex].badge}</span> {/*260326 수정*/}
                 <h2 className="text-[20px] font-semibold text-white leading-tight mt-1 drop-shadow-md whitespace-pre-line break-keep">{bannerSlides[bannerIndex].title}</h2>
                 <p className="text-[#D4D4D4] text-[11px] font-medium drop-shadow">{bannerSlides[bannerIndex].sub}</p>
               </div>
@@ -298,7 +300,7 @@ export default function Home() {
                   style={{ width: "50%", maxWidth: "750px", aspectRatio: "750 / 390", transform: isActive ? "scale(1.1)" : "scale(0.85)" }} /*260325 수정*/
                 >
                   {slide.img.endsWith(".mp4") ? ( /*260325 수정*/
-                    <video src={slide.img} className="absolute inset-0 w-full h-full object-cover" autoPlay={isActive} loop muted playsInline draggable={false} ref={el => { if (el) { if (isActive) { el.play(); } else { el.pause(); el.currentTime = 0; } } }} />
+                    <video src={slide.img} preload="auto" className="absolute inset-0 w-full h-full object-cover" autoPlay={isActive} loop muted playsInline draggable={false} onLoadedMetadata={e => { (e.currentTarget as HTMLVideoElement).currentTime = 0.001; }} ref={el => { if (el) { if (isActive) { el.play(); } else { el.pause(); el.currentTime = 0; } } }} />
                   ) : (
                     <img src={slide.img} alt={slide.badge} className="absolute inset-0 w-full h-full object-cover" loading={isActive ? undefined : "lazy"} draggable={false} />
                   )}
@@ -355,9 +357,9 @@ export default function Home() {
                       <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#0A0A0A]/95 via-[#0A0A0A]/40 to-transparent pointer-events-none" />
                       <div className="absolute inset-x-0 bottom-0 top-0 bg-gradient-to-t from-[#0A0A0A]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-                      <div className="absolute bottom-0 w-full p-3.5 flex flex-col justify-end pointer-events-none">
+                      <div className="absolute bottom-0 w-full p-2.5 md:p-3.5 flex flex-col justify-end pointer-events-none"> {/*260326 수정*/}
                         <h4 className="font-bold text-white text-base md:text-[17px] mb-0.5 leading-snug">{char.name}</h4>
-                        <p className="text-[11px] md:text-xs text-[#A3A3A3] line-clamp-1 mb-2 font-medium">
+                        <p className="text-[11px] md:text-xs text-[#A3A3A3] line-clamp-1 mb-1 md:mb-2 font-medium"> {/*260326 수정*/}
                           {char.quote}
                         </p>
                         <div className="flex items-center gap-2.5 text-[10px] md:text-[11px] text-[#737373] font-semibold">
@@ -425,9 +427,9 @@ export default function Home() {
                         <div ref={el => { newBadgeRefs.current[charIdx] = el; }} className="w-full h-full" />
                       </div>
 
-                      <div className="absolute bottom-0 w-full p-3.5 md:p-4">
+                      <div className="absolute bottom-0 w-full p-2.5 md:p-4"> {/*260326 수정*/}
                         <h4 className="font-bold text-white text-[17px] md:text-[19px] mb-0.5 leading-snug drop-shadow-md">{char.name}</h4>
-                        <p className="text-[11px] md:text-[12px] font-bold mb-2">{char.sub}</p>
+                        <p className="text-[11px] md:text-[12px] font-bold mb-1 md:mb-2">{char.sub}</p> {/*260326 수정*/}
                         <div className="flex flex-wrap gap-1.5">
                           {char.tags?.map(tag => (
                             <span key={tag} className="text-[9px] md:text-[10px] text-[#A3A3A3] bg-white/5 px-1.5 py-0.5 rounded-sm border border-white/5 font-bold backdrop-blur-sm">
@@ -449,6 +451,7 @@ export default function Home() {
               <ChevronLeft className="w-6 h-6 ml-0.5" />
             </button>
             <button
+
               onClick={() => newScroll('right')}
               className={`hidden md:flex absolute top-1/2 -right-4 -translate-y-1/2 w-10 h-10 bg-black/80 hover:bg-black text-white rounded-full items-center justify-center opacity-0 group-hover/newlist:opacity-100 transition-all duration-200 z-10 shadow-xl border border-white/10 backdrop-blur-sm ${!showNewRight && 'hidden'}`}
             >
@@ -468,8 +471,8 @@ export default function Home() {
                 <button
                   key={cat}
                   className={`flex-none px-5 py-2 rounded-full text-[14px] md:text-[15px] font-bold transition-all ${idx === 0
-                      ? "bg-white text-black hover:bg-white/90 shadow-[0_4px_12px_rgba(255,255,255,0.2)]"
-                      : "bg-[#1A1A1A] text-[#A3A3A3] hover:bg-[#262626] hover:text-white"
+                    ? "bg-white text-black hover:bg-white/90 shadow-[0_4px_12px_rgba(255,255,255,0.2)]"
+                    : "bg-[#1A1A1A] text-[#A3A3A3] hover:bg-[#262626] hover:text-white"
                     }`}
                 >
                   {cat}
