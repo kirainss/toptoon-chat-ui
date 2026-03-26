@@ -46,7 +46,7 @@ export default function ChatPage() {
     document.querySelectorAll<HTMLVideoElement>(`video[data-fx="${group}"]`).forEach((v) => {
       v.pause(); v.currentTime = 0; v.style.opacity = "1"; /*260325 수정*/
       v.playbackRate = 1.4; /*260325 수정*/
-      const doPlay = () => { const p = v.play(); if (p) p.catch(() => {}); v.onended = () => { v.style.opacity = "0"; }; }; /*260325 수정*/
+      const doPlay = () => { v.style.transition = "opacity 0.4s ease-out"; const p = v.play(); if (p) p.catch(() => {}); v.onended = () => { v.style.opacity = "0"; }; }; /*260325 수정 / 260326 fadeout 추가*/
       if (v.readyState >= 3) { doPlay(); } else { v.addEventListener("canplaythrough", doPlay, { once: true }); v.load(); } /*260325 수정*/
     });
   };
