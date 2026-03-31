@@ -38,8 +38,8 @@ export default function Home() {
     { img: "/mp4/hero-bnr-03.mp4", badge: "신규캐릭터", title: "저한테 이러시면\n안 되는 거잖아요!!", sub: "<집주인 딸내미> 장선영", promo: false }, /*260326 수정*/
     { img: "/mp4/hero-bnr-01.mp4", badge: "인기캐릭터", title: "오빠가 오늘 밤\n책임져 주세요", sub: "<무선 연결 오나홀> 신아영", promo: false }, /*260326 수정*/
     { img: "/mp4/hero-bnr-02.mp4", badge: "인기캐릭터", title: "나한테 중요한 건\n네 행복이야", sub: "<건물주 누나> 서나리", promo: false }, /*260326 수정*/
-    { img: "/mp4/hero-bnr-05.mp4", badge: "인기캐릭터", title: "오늘... 남편은 출장이야.\n들어올래?", sub: "<세트업> 배현주", promo: false }, /*260326 수정*/
-    { img: "/mp4/hero-bnr-06.mp4", badge: "인기캐릭터", title: "오빠, 나 요가 하는데...\n자세 좀 봐줄 수 있어요?", sub: "<무선 연결 오나홀> 윤혜윤", promo: false }, /*260326 수정*/
+    { img: "/mp4/hero-bnr-05.mp4", badge: "인기캐릭터", title: "오늘 남편은 출장이야...\n들어올래?", sub: "<세트업> 배현주", promo: false }, /*260326 수정*/
+    { img: "/mp4/hero-bnr-06.mp4", badge: "인기캐릭터", title: "오빠, 요가 하는데...\n자세 좀 봐줄 수 있어요?", sub: "<무선 연결 오나홀> 윤혜윤", promo: false }, /*260326 수정*/
     { img: "/images/mainbnr-promo-01.jpg", poster: "", badge: "", title: "", sub: "", promo: true },
     { img: "/images/mainbnr-promo-02.jpg", poster: "", badge: "", title: "", sub: "", promo: true },
     { img: "/images/mainbnr-promo-03.jpg", poster: "", badge: "", title: "", sub: "", promo: true },
@@ -252,7 +252,7 @@ export default function Home() {
             {extSlides.map((slide, i) => (
               <div key={i} className="relative w-full h-full" style={{ flex: "0 0 100%" }}>
                 {slide.img.endsWith(".mp4") ? ( /*260325 수정*/
-                  <video src={slide.img} preload="auto" className="absolute inset-0 w-full h-full object-cover object-top" autoPlay loop muted playsInline draggable={false} onLoadedMetadata={e => { (e.currentTarget as HTMLVideoElement).currentTime = 0.001; }} />
+                  <video src={slide.img} preload="auto" className="absolute inset-0 w-full h-full object-cover object-top" loop muted playsInline draggable={false} onLoadedMetadata={e => { (e.currentTarget as HTMLVideoElement).currentTime = 0.001; }} onStalled={e => { const v = e.currentTarget; if (!v.paused) { v.load(); v.play().catch(() => {}); } }} ref={el => { if (!el) return; if (i === slidePos) { el.play().catch(() => {}); } else { el.pause(); el.currentTime = 0.001; } }} />
                 ) : (
                   <img src={slide.img} alt={slide.badge} className="absolute inset-0 w-full h-full object-cover object-top" draggable={false} />
                 )}
@@ -261,7 +261,7 @@ export default function Home() {
           </div>
           {!bannerSlides[bannerIndex].promo && (
             <>
-              <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/70 to-transparent pointer-events-none" />
+              <div className="absolute inset-x-0 bottom-0 h-[38%] bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/60 to-transparent pointer-events-none" /> {/*260327 수정 — 그라데이션 높이 축소*/}
               <div className="absolute bottom-5 left-5 flex flex-col gap-1.5 pointer-events-none z-10"> {/*260325 수정*/}
                 <span className={`${bannerSlides[bannerIndex].badge === "신규캐릭터" ? "badge-new" : "bg-black"} text-white text-[10px] font-bold px-2 py-0.5 rounded w-fit`}>{bannerSlides[bannerIndex].badge}</span> {/*260326 수정*/}
                 <h2 className="text-[20px] font-semibold text-white leading-tight mt-1 drop-shadow-md whitespace-pre-line break-keep">{bannerSlides[bannerIndex].title}</h2>
@@ -300,7 +300,7 @@ export default function Home() {
                   style={{ width: "50%", maxWidth: "750px", aspectRatio: "750 / 390", transform: isActive ? "scale(1.1)" : "scale(0.85)" }} /*260325 수정*/
                 >
                   {slide.img.endsWith(".mp4") ? ( /*260325 수정*/
-                    <video src={slide.img} preload="auto" className="absolute inset-0 w-full h-full object-cover" autoPlay={isActive} loop muted playsInline draggable={false} onLoadedMetadata={e => { (e.currentTarget as HTMLVideoElement).currentTime = 0.001; }} ref={el => { if (el) { if (isActive) { el.play(); } else { el.pause(); el.currentTime = 0; } } }} />
+                    <video src={slide.img} preload="auto" className="absolute inset-0 w-full h-full object-cover" loop muted playsInline draggable={false} onLoadedMetadata={e => { (e.currentTarget as HTMLVideoElement).currentTime = 0.001; }} onStalled={e => { const v = e.currentTarget; if (!v.paused) { v.load(); v.play().catch(() => {}); } }} ref={el => { if (!el) return; if (isActive) { el.play().catch(() => {}); } else { el.pause(); el.currentTime = 0; } }} />
                   ) : (
                     <img src={slide.img} alt={slide.badge} className="absolute inset-0 w-full h-full object-cover" loading={isActive ? undefined : "lazy"} draggable={false} />
                   )}

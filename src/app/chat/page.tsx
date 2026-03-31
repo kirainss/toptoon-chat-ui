@@ -9,7 +9,7 @@ const character = {
   tags: ["#우니들", "#우산먼물리나들", "#신아영", "#클라카", "#글라피", "#노벨피아 원작"],
   views: "221,302", chats: "19,875", likes: "356",
   avatar: "/images/thumb-char-01.jpg",
-  images: ["/images/img-chat-01.webp", "/images/img-chat-01.webp"],
+  images: ["/images/img-chat-01.webp", "/images/img-chat-01.webp", "/images/img-chat-01.webp"], /*260331 수정 — 로얄 이미지 추가*/
   bio: "학교에서 모든 이의 시선을 끄는 완벽한 현카, 신아영. 누구도 눈빛만으로 넘어갈 수 있는 노련한 미소를 지은 그녀, 하지만 그 미소의 뒤를 들여다 보면 남들과는 다른 비밀의 정원이 숨...",
 };
 
@@ -74,7 +74,7 @@ export default function ChatPage() {
     setFlashKey(k => k + 1); /* 넘기기 전 하얀 빛 */ /*260325 수정*/
     setNextImg(targetIdx);
     setIsFlipping(true);
-    setTimeout(() => { if (targetIdx === 0) { playFxGroup("reveal-std"); } else { playFxGroup("reveal-edge"); playFxGroup("reveal-ex"); } }, 750); /* 프리미엄=fx.webm / 익스클루시브=fx-edge+fx-ex 동시 재생 */ /*260326 수정*/
+    setTimeout(() => { if (targetIdx === 0) { playFxGroup("reveal-std"); } else if (targetIdx === 1) { playFxGroup("reveal-ex"); } else { playFxGroup("reveal-royal"); } }, 750); /*260331 수정 — 로얄 FX 추가*/
     setTimeout(() => {
       setCurrentImg(targetIdx);
       setIsFlipping(false);
@@ -166,11 +166,11 @@ export default function ChatPage() {
               <div key={flashKey} className={`absolute inset-0 bg-white pointer-events-none ${flashKey > 0 ? "light-flash" : "opacity-0"}`} /> {/*260325 수정 — 페이지와 함께 넘어감*/}
             </div>
             <video data-fx="reveal-std" src="/webp/fx-premium.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen z-[2]" style={{ objectFit: "fill" }} /> {/*260326 수정*/}
-            <video data-fx="reveal-edge" src="/webp/fx-exclusive-edge.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen z-[2]" style={{ objectFit: "fill" }} /> {/*260326 수정*/}
-            <video data-fx="reveal-ex" src="/webp/fx-exclusive.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen z-[2]" style={{ objectFit: "fill" }} /> {/*260326 수정*/}
+            <video data-fx="reveal-ex" src="/webp/fx-exclusive.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen z-[2]" style={{ objectFit: "fill" }} /> {/*260327 수정 — edge 제거*/}
+            <video data-fx="reveal-royal" src="/webp/fx-royal.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen z-[2]" style={{ objectFit: "fill" }} /> {/*260331 추가 — 로얄 FX*/}
             {/* 이미지별 배지 */}
             <div className="absolute top-3 left-3 z-20"> {/*260326 수정*/}
-              <span className="text-[14px] font-bold px-3 py-1.5 rounded-full border" style={{ backgroundColor: currentImg === 0 ? "rgba(59,35,10,.8)" : "rgba(16,37,23,.8)", borderColor: currentImg === 0 ? "rgba(139,105,20,0.3)" : "rgba(60,140,80,0.3)" }}><span className={currentImg === 0 ? "badge-text-premium" : "badge-text-ex"}>{currentImg === 0 ? "프리미엄" : "익스클루시브"}</span></span> {/*260326 수정*/}
+              <span className="text-[14px] font-bold px-3 py-1.5 rounded-full border" style={{ backgroundColor: currentImg === 0 ? "rgba(59,35,10,.8)" : currentImg === 1 ? "rgba(16,37,23,.8)" : "rgba(40,20,70,.85)", borderColor: currentImg === 0 ? "rgba(139,105,20,0.3)" : currentImg === 1 ? "rgba(60,140,80,0.3)" : "rgba(168,85,247,0.5)", boxShadow: currentImg === 2 ? "0 0 12px rgba(168,85,247,.35), inset 0 0 8px rgba(168,85,247,.1)" : "none" }}><span className={currentImg === 0 ? "badge-text-premium" : currentImg === 1 ? "badge-text-ex" : "badge-text-royal"}>{currentImg === 0 ? "프리미엄" : currentImg === 1 ? "익스클루시브" : "로얄"}</span></span> {/*260331 수정*/}
             </div>
           </div>
         </div>
@@ -239,13 +239,13 @@ export default function ChatPage() {
           <div key={flashKey} className={`absolute inset-0 bg-white pointer-events-none ${flashKey > 0 ? "light-flash" : "opacity-0"}`} /> {/*260325 수정 — 페이지와 함께 넘어감*/}
         </div>
         <video data-fx="reveal-std" src="/webp/fx-premium.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen z-[2]" style={{ objectFit: "fill" }} /> {/*260326 수정*/}
-        <video data-fx="reveal-edge" src="/webp/fx-exclusive-edge.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen z-[2]" style={{ objectFit: "fill" }} /> {/*260326 수정*/}
-        <video data-fx="reveal-ex" src="/webp/fx-exclusive.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen z-[2]" style={{ objectFit: "fill" }} /> {/*260326 수정*/}
+        <video data-fx="reveal-ex" src="/webp/fx-exclusive.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen z-[2]" style={{ objectFit: "fill" }} /> {/*260327 수정 — edge 제거*/}
+        <video data-fx="reveal-royal" src="/webp/fx-royal.webm" muted playsInline preload="auto" className="absolute inset-0 w-full h-full pointer-events-none mix-blend-screen z-[2]" style={{ objectFit: "fill" }} /> {/*260331 추가 — 로얄 FX*/}
         <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
 
         {/* 이미지별 배지 + 이미지 선택 */}
         <div className="absolute top-3 inset-x-3 z-20 flex items-center justify-between"> {/*260326 수정*/}
-          <span className="text-[14px] font-bold px-3 py-1.5 rounded-full border" style={{ backgroundColor: currentImg === 0 ? "rgba(59,35,10,.8)" : "rgba(16,37,23,.8)", borderColor: currentImg === 0 ? "rgba(139,105,20,0.3)" : "rgba(60,140,80,0.3)" }}><span className={currentImg === 0 ? "badge-text-premium" : "badge-text-ex"}>{currentImg === 0 ? "프리미엄" : "익스클루시브"}</span></span> {/*260326 수정*/}
+          <span className="text-[14px] font-bold px-3 py-1.5 rounded-full border" style={{ backgroundColor: currentImg === 0 ? "rgba(59,35,10,.8)" : currentImg === 1 ? "rgba(16,37,23,.8)" : "rgba(40,20,70,.85)", borderColor: currentImg === 0 ? "rgba(139,105,20,0.3)" : currentImg === 1 ? "rgba(60,140,80,0.3)" : "rgba(168,85,247,0.5)", boxShadow: currentImg === 2 ? "0 0 12px rgba(168,85,247,.35), inset 0 0 8px rgba(168,85,247,.1)" : "none" }}><span className={currentImg === 0 ? "badge-text-premium" : currentImg === 1 ? "badge-text-ex" : "badge-text-royal"}>{currentImg === 0 ? "프리미엄" : currentImg === 1 ? "익스클루시브" : "로얄"}</span></span> {/*260331 수정*/}
           <button className="flex items-center gap-1.5 bg-[#4A3F38]/90 text-white/90 text-[13px] font-medium px-3 py-1.5 rounded-full backdrop-blur-sm">
             <ImageIcon className="w-4 h-4" /> {currentImg + 1}/{character.images.length} <ChevronDown className="w-3.5 h-3.5" />
           </button>

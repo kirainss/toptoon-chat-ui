@@ -1,0 +1,155 @@
+@charset "utf-8";
+
+/* ====================================== *
+ * TCDS (Toptoon Chat Design System)
+ * theme.css v2 — 디자인 토큰 수정본
+ * ====================================== *
+ * 변경 이력
+ *   v2  2025-06  누락 토큰 추가, 네이밍 통일(accent→acc 폐기)
+ * ====================================== */
+
+:root {
+
+  /* ===================================
+     FONT
+     =================================== */
+  --font-family-base: "Pretendard Variable", "Pretendard", "Noto Sans KR",
+    system-ui, -apple-system, sans-serif;
+  --font-letter-spacing: -0.01rem;
+
+  /* Font Size — Mobile-first (Desktop 오버라이드는 하단 미디어쿼리) */
+  --font-size-micro:    11px;
+  --font-size-caption:  12px;
+  --font-size-body-sm:  13px;
+  --font-size-body:     14px;
+  --font-size-title:    14px;
+  --font-size-heading:  16px;
+  --font-size-display:  28px;
+
+  /* Font Weight */
+  --font-weight-regular:  400;
+  --font-weight-medium:   500;
+  --font-weight-semibold: 600;
+  --font-weight-bold:     700;
+
+  /* ===================================
+     COLOR — Background
+     =================================== */
+  --color-bg-primary:   #0F0F0F;
+  --color-bg-secondary: #1A1A1A;
+  --color-bg-tertiary:  #2A2A2A;
+  --color-bg-elevated:  #333333;
+
+  /* ===================================
+     COLOR — Text
+     =================================== */
+  --color-text-primary:   #FFFFFF;
+  --color-text-secondary: rgba(255, 255, 255, 0.55);
+  --color-text-tertiary:  rgba(255, 255, 255, 0.35);
+  --color-text-disabled:  rgba(255, 255, 255, 0.2);
+
+  /* ===================================
+     COLOR — Common
+     =================================== */
+  --color-common-white: #FFFFFF;
+  --color-common-black: #000000;
+
+  /* ===================================
+     COLOR — Brand
+     =================================== */
+  --color-brand-primary:       #EE2C39;
+  --color-brand-secondary:     #D42531;
+  --color-brand-primary-hover: rgba(238, 44, 57, 0.08);
+
+  /* ===================================
+     COLOR — Accent  (네이밍 통일: acc → accent)
+     =================================== */
+  --color-accent-new:   #EE2C39;
+  --color-accent-live:  #E24B4A;
+  --color-accent-coin:  #FFD700;
+  --color-accent-promo: #F05255;
+
+  /* ===================================
+     COLOR — Semantic
+     =================================== */
+  --color-success: #4CAF50;
+  --color-warning: #FF9800;
+  --color-error:   #EE2C39;   /* 추후 brand와 분리 예정 */
+
+  /* ===================================
+     COLOR — Border
+     =================================== */
+  --color-border-default: rgba(255, 255, 255, 0.08);
+  --color-border-hover:   rgba(255, 255, 255, 0.15);
+  --color-border-active:  #EE2C39;
+
+  /* ===================================
+     COLOR — Tag
+     =================================== */
+  --color-tag-bg:   rgba(255, 255, 255, 0.08);
+  --color-tag-text: rgba(255, 255, 255, 0.6);
+
+  /* ===================================
+     ELEVATION & Z-INDEX
+     =================================== */
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --z-dropdown: 100;
+  --z-sticky:   200;
+  --z-modal:    1000;
+  --z-toast:    1100;
+
+  /* ===================================
+     RADIUS
+     =================================== */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-full: 9999px;
+
+  /* ===================================
+     SPACING
+     =================================== */
+  --spacing-xs:  4px;
+  --spacing-sm:  8px;
+  --spacing-md:  12px;
+  --spacing-lg:  16px;
+  --spacing-xl:  24px;
+  --spacing-2xl: 32px;
+
+  /* ===================================
+     GRID
+     =================================== */
+  --grid-gap-mobile:  12px;
+  --grid-gap-desktop: 16px;
+
+  /* ===================================
+     LAYOUT
+     =================================== */
+  --sidebar-width:           240px;
+  --sidebar-width-collapsed:  64px;
+  --tabbar-height:             56px;
+  --header-height:             56px;
+
+  /* ===================================
+     TRANSITION
+     =================================== */
+  --transition-fast:   150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow:   400ms ease;
+}
+
+/* ===================================
+   RESPONSIVE — Desktop (≥1024px)
+   타이포그래피 오버라이드
+   =================================== */
+@media (min-width: 1024px) {
+  :root {
+    --font-size-micro:   12px;
+    --font-size-caption: 13px;
+    --font-size-body:    16px;
+    --font-size-title:   16px;
+    --font-size-heading: 18px;
+    --font-size-display: 38px;
+  }
+}

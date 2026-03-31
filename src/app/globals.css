@@ -88,3 +88,45 @@
 /* 채팅 캐릭터 이미지 배지 그라디언트 텍스트 */ /*260326 추가*/
 .badge-text-premium { display: inline-block; background: linear-gradient(135deg, #ffe184, #ffc11b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; } /*260326 추가*/
 .badge-text-ex { display: inline-block; background: linear-gradient(135deg, #adff98, #3faf4d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; } /*260326 추가*/
+.badge-text-royal { display: inline-block; background: linear-gradient(135deg, #f5d5ff, #c084fc, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 6px rgba(192,132,252,.5)); } /*260331 수정*/
+
+/* ROYAL 히든 카드 강조 애니메이션 (Professional Border Motion) */
+@keyframes royalGlow {
+  0%, 100% { box-shadow: 0 0 10px rgba(216, 180, 254, 0.05); }
+  50% { box-shadow: 0 0 25px rgba(216, 180, 254, 0.25); }
+}
+
+@keyframes border-rotate {
+  0% { --angle: 0deg; }
+  100% { --angle: 360deg; }
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.animate-royal-glow {
+  animation: royalGlow 6s infinite ease-in-out;
+}
+
+/* 보더를 따라 회전하는 빛 전용 클래스 */
+.royal-border-light {
+  position: relative;
+}
+
+.royal-border-light::before {
+  content: "";
+  position: absolute;
+  inset: -2px; /* 보더 2px 두께에 딱 맞춤 */
+  border: 2px solid transparent;
+  border-radius: inherit;
+  background: conic-gradient(from var(--angle), transparent 75%, rgba(216, 180, 254, 1) 95%, transparent 100%) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  animation: border-rotate 4s linear infinite;
+  pointer-events: none;
+  z-index: 5;
+}

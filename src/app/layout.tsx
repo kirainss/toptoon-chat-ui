@@ -14,6 +14,7 @@ import {
   Send
 } from "lucide-react";
 import Link from "next/link";
+import Script from "next/script";
 
 
 export const metadata: Metadata = {
@@ -31,7 +32,7 @@ export default function RootLayout({
     { icon: Compass, label: "탐색", href: "/new" },
     { icon: MessageCircle, label: "내 채팅", href: "/chat" },
     { icon: Heart, label: "즐겨찾기", href: "#" },
-    { icon: Grid, label: "컬렉션", href: "#" },
+    { icon: Grid, label: "컬렉션", href: "/collection" },
     { icon: Settings, label: "설정", href: "#" },
   ];
 
@@ -45,6 +46,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className="dark scroll-smooth">
       <body className="bg-[#121212] text-slate-100 antialiased font-sans">
+        <Script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" strategy="lazyOnload" />
         <div className="flex h-[100dvh] overflow-hidden bg-[#0A0A0A]">
           {/* Desktop Sidebar */}
           <aside className="hidden md:flex flex-col w-[260px] bg-[#0A0A0A] border-r border-white/10 h-full py-1 flex-shrink-0 relative z-50 overflow-y-auto scrollbar-hide">
@@ -112,7 +114,7 @@ export default function RootLayout({
           <div className="flex-1 flex flex-col h-full bg-[#121212] overflow-hidden relative">
 
             {/* Header (Desktop + Mobile) */}
-            <header className="h-[68px] md:h-[70px] w-full flex items-center justify-between px-4 md:px-8 bg-[#121212]/95 backdrop-blur-md sticky top-0 z-40 border-b border-white/10">
+            <header className="hidden md:flex h-[68px] md:h-[70px] w-full items-center justify-between px-4 md:px-8 bg-[#121212]/95 backdrop-blur-md sticky top-0 z-40 border-b border-white/10">
               {/* Mobile Left */}
               <div className="md:hidden flex items-center gap-2">
                 <button className="text-white p-1"><Menu className="w-6 h-6" /></button>
@@ -121,7 +123,7 @@ export default function RootLayout({
 
               {/* Desktop Left (Hamburger only) */}
               <div className="hidden md:flex items-center">
-                <button className="text-white hover:text-[#E50914] transition-colors"><Menu className="w-6 h-6" /></button>
+                <button className="text-white hover:text-[#EE2C39] transition-colors"><Menu className="w-6 h-6" /></button>
               </div>
 
               {/* Desktop Search Center */}
