@@ -11,9 +11,11 @@
 }
 
 @layer base {
+  html { overflow-x: hidden; } /*260403 추가*/
   body {
     background-color: var(--color-dark-bg);
     color: #f8fafc;
+    overflow-x: hidden; /*260403 추가*/
   }
 
   /* 모든 버튼, 링크, 상호작용 가능한 요소에 커서 포인터 즉시 강제 적용 */
@@ -110,6 +112,7 @@
 .animate-royal-glow {
   animation: royalGlow 6s infinite ease-in-out;
 }
+
 
 /* 보더를 따라 회전하는 빛 전용 클래스 */
 .royal-border-light {
