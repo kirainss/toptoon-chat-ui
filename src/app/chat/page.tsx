@@ -245,10 +245,10 @@ export default function ChatPage() {
                     {/* 슬라이딩 thumb */}
                     <div className={`absolute top-0.5 h-[calc(100%-4px)] rounded-full transition-all duration-200 ${talkMode === "일상톡" ? "left-0.5 bg-[#1D3A5C] border border-[#60A5FA]/25" : "left-[50%] bg-[#3D1F2E] border border-[#F472B6]/25"}`}
                       style={{ width: 'calc(50% - 2px)' }} />
-                    <button onClick={() => setTalkMode("일상톡")} className={`relative z-10 flex items-center gap-1 h-full px-2.5 rounded-full text-[12px] font-semibold transition-colors ${talkMode === "일상톡" ? "text-[#60A5FA]" : "text-[#555] hover:text-[#888]"}`}>
+                    <button onClick={() => setTalkMode("일상톡")} className={`relative z-10 flex items-center gap-1 h-full px-2.5 rounded-full text-[12px] font-semibold transition-colors ${talkMode === "일상톡" ? "text-[#60A5FA]" : "text-[#999] hover:text-white"}`}>
                       <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> 일상톡
                     </button>
-                    <button onClick={() => setTalkMode("설렘톡")} className={`relative z-10 flex items-center gap-1 h-full px-2.5 rounded-full text-[12px] font-semibold transition-colors ${talkMode === "설렘톡" ? "text-[#F472B6]" : "text-[#555] hover:text-[#888]"}`}>
+                    <button onClick={() => setTalkMode("설렘톡")} className={`relative z-10 flex items-center gap-1 h-full px-2.5 rounded-full text-[12px] font-semibold transition-colors ${talkMode === "설렘톡" ? "text-[#F472B6]" : "text-[#999] hover:text-white"}`}>
                       <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> 설렘톡
                     </button>
                   </div>
@@ -265,7 +265,7 @@ export default function ChatPage() {
                     <span style={{ background: 'linear-gradient(135deg, #60A5FA, #A78BFA)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>추천답장</span>
                   </button>
                   <div className="relative">
-                    <button onClick={() => setShowSettings(v => !v)} className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${showSettings ? "text-white" : "text-[#555] hover:text-white"}`}>
+                    <button onClick={() => setShowSettings(v => !v)} className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${showSettings ? "text-white" : "text-[#999] hover:text-white"}`}>
                       <svg viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5"><path d="M7.916 11.001a3.166 3.166 0 0 1 3.095 2.5h5.655l.135.014a.665.665 0 0 1 0 1.303l-.135.013h-5.655a3.166 3.166 0 0 1-6.19 0H3.334a.665.665 0 0 1 0-1.33h1.489a3.17 3.17 0 0 1 3.094-2.5m0 1.33a1.836 1.836 0 1 0 .001 3.671 1.836 1.836 0 0 0 0-3.67m4.167-9.663c1.52 0 2.79 1.072 3.095 2.5h1.488l.135.014a.665.665 0 0 1 0 1.303l-.135.013h-1.488a3.166 3.166 0 0 1-6.19 0H3.334a.665.665 0 0 1 0-1.33H8.99a3.166 3.166 0 0 1 3.094-2.5m0 1.33a1.835 1.835 0 1 0 0 3.67 1.835 1.835 0 0 0 0-3.67"/></svg>
                     </button>
                     {showSettings && (
@@ -276,7 +276,7 @@ export default function ChatPage() {
                         </div>
                         <div className="flex gap-1.5 mb-4">
                           {(["작게", "보통", "크게"] as const).map(s => (
-                            <button key={s} onClick={() => setFontSize(s)} className={`flex-1 py-1.5 rounded-lg text-[12px] font-semibold transition-colors ${fontSize === s ? "bg-white/15 text-white" : "text-[#555] hover:text-[#888]"}`}>{s}</button>
+                            <button key={s} onClick={() => setFontSize(s)} className={`flex-1 py-1.5 rounded-lg text-[12px] font-semibold transition-colors ${fontSize === s ? "bg-white/15 text-white" : "text-[#999] hover:text-white"}`}>{s}</button>
                           ))}
                         </div>
                         <div className="flex items-center justify-between">
@@ -296,8 +296,8 @@ export default function ChatPage() {
               {/* 입력창 + 전송 */}
               <div className="flex items-center gap-2">
                 <input type="text" placeholder={`${character.name}에게 메시지 보내기...`} value={inputValue} onChange={(e) => setInputValue(e.target.value)} className="flex-1 min-w-0 bg-transparent text-white text-[14px] placeholder-[#555] py-3 focus:outline-none" />
-                <button className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 active:scale-95 text-[#555] hover:text-white transition-colors">
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-[22px] h-[22px]"><path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z"/></svg>
+                <button className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 active:scale-95 text-white hover:text-white/70 transition-colors">
+                  <svg viewBox="0 0 24 24" className="w-[20px] h-[20px]"><path fill="currentColor" d="M20.235 5.686c.432-1.195-.726-2.353-1.921-1.92L3.709 9.048c-1.199.434-1.344 2.07-.241 2.709l4.662 2.699l4.163-4.163a1 1 0 0 1 1.414 1.414L9.544 15.87l2.7 4.662c.638 1.103 2.274.957 2.708-.241z"/></svg>
                 </button>
               </div>
             </div>
@@ -419,21 +419,21 @@ export default function ChatPage() {
           )}
 
           {/* 하단 컨트롤 */}
-          <div className="pt-3">
-            <div className="flex flex-col backdrop-blur-[12px] bg-[rgba(0,0,0,0.3)] border-t border-[rgba(255,255,255,0.12)] rounded-t-[20px] px-4 pt-3" style={{ paddingBottom: 'calc(1.25rem + env(safe-area-inset-bottom))' }}>
+          <div className="pt-1">
+            <div className="flex flex-col px-4 pt-3" style={{ paddingBottom: 'calc(1.25rem + env(safe-area-inset-bottom))' }}>
               {/* 상단: 슬라이드 토글(좌) + 액션 버튼(우) */}
               <div className="flex items-center justify-between mb-1">
                 <div className="flex items-center gap-1">
                   <div className="flex items-center h-7 p-0.5 rounded-full bg-white/[0.06] relative flex-shrink-0">
                     <div className={`absolute top-0.5 h-[calc(100%-4px)] rounded-full transition-all duration-200 ${talkMode === "일상톡" ? "left-0.5 bg-[#1D3A5C] border border-[#60A5FA]/25" : "left-[50%] bg-[#3D1F2E] border border-[#F472B6]/25"}`} style={{ width: 'calc(50% - 2px)' }} />
-                    <button onClick={() => setTalkMode("일상톡")} className={`relative z-10 flex items-center gap-1 h-full px-2.5 rounded-full text-[12px] font-semibold transition-colors ${talkMode === "일상톡" ? "text-[#60A5FA]" : "text-[#555] hover:text-[#888]"}`}>
+                    <button onClick={() => setTalkMode("일상톡")} className={`relative z-10 flex items-center gap-1 h-full px-2.5 rounded-full text-[12px] font-semibold transition-colors ${talkMode === "일상톡" ? "text-[#60A5FA]" : "text-[#999] hover:text-white"}`}>
                       <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> 일상톡
                     </button>
-                    <button onClick={() => setTalkMode("설렘톡")} className={`relative z-10 flex items-center gap-1 h-full px-2.5 rounded-full text-[12px] font-semibold transition-colors ${talkMode === "설렘톡" ? "text-[#F472B6]" : "text-[#555] hover:text-[#888]"}`}>
+                    <button onClick={() => setTalkMode("설렘톡")} className={`relative z-10 flex items-center gap-1 h-full px-2.5 rounded-full text-[12px] font-semibold transition-colors ${talkMode === "설렘톡" ? "text-[#F472B6]" : "text-[#999] hover:text-white"}`}>
                       <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> 설렘톡
                     </button>
                   </div>
-                  <button className="w-6 h-6 flex items-center justify-center text-[#444] hover:text-[#777] transition-colors flex-shrink-0">
+                  <button className="w-6 h-6 flex items-center justify-center text-[#999] hover:text-white transition-colors flex-shrink-0">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
                   </button>
                 </div>
@@ -447,7 +447,7 @@ export default function ChatPage() {
                     <span style={{ background: 'linear-gradient(135deg, #60A5FA, #A78BFA)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}><span className="min-[451px]:hidden">추천</span><span className="hidden min-[451px]:inline">추천답장</span></span>
                   </button>
                   <div className="relative">
-                    <button onClick={() => setShowSettings(v => !v)} className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${showSettings ? "text-white" : "text-[#555] hover:text-white"}`}>
+                    <button onClick={() => setShowSettings(v => !v)} className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${showSettings ? "text-white" : "text-[#999] hover:text-white"}`}>
                       <svg viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5"><path d="M7.916 11.001a3.166 3.166 0 0 1 3.095 2.5h5.655l.135.014a.665.665 0 0 1 0 1.303l-.135.013h-5.655a3.166 3.166 0 0 1-6.19 0H3.334a.665.665 0 0 1 0-1.33h1.489a3.17 3.17 0 0 1 3.094-2.5m0 1.33a1.836 1.836 0 1 0 .001 3.671 1.836 1.836 0 0 0 0-3.67m4.167-9.663c1.52 0 2.79 1.072 3.095 2.5h1.488l.135.014a.665.665 0 0 1 0 1.303l-.135.013h-1.488a3.166 3.166 0 0 1-6.19 0H3.334a.665.665 0 0 1 0-1.33H8.99a3.166 3.166 0 0 1 3.094-2.5m0 1.33a1.835 1.835 0 1 0 0 3.67 1.835 1.835 0 0 0 0-3.67"/></svg>
                     </button>
                     {showSettings && (
@@ -458,7 +458,7 @@ export default function ChatPage() {
                         </div>
                         <div className="flex gap-1.5 mb-4">
                           {(["작게", "보통", "크게"] as const).map(s => (
-                            <button key={s} onClick={() => setFontSize(s)} className={`flex-1 py-1.5 rounded-lg text-[12px] font-semibold transition-colors ${fontSize === s ? "bg-white/15 text-white" : "text-[#555] hover:text-[#888]"}`}>{s}</button>
+                            <button key={s} onClick={() => setFontSize(s)} className={`flex-1 py-1.5 rounded-lg text-[12px] font-semibold transition-colors ${fontSize === s ? "bg-white/15 text-white" : "text-[#999] hover:text-white"}`}>{s}</button>
                           ))}
                         </div>
                         <div className="flex items-center justify-between">
@@ -477,9 +477,11 @@ export default function ChatPage() {
               </div>
               {/* 입력창 + 전송 */}
               <div className="flex items-center gap-2">
-                <input type="text" placeholder={`${character.name}에게 메시지 보내기...`} value={inputValue} onChange={(e) => setInputValue(e.target.value)} className="flex-1 min-w-0 bg-transparent text-white text-[14px] placeholder-[#555] py-3 focus:outline-none" />
-                <button className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0 active:scale-95 text-white transition-colors">
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-[22px] h-[22px]"><path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z"/></svg>
+                <div className="flex-1 flex items-center backdrop-blur-[12px] bg-[rgba(0,0,0,0.35)] border border-[rgba(255,255,255,0.1)] rounded-3xl px-3">
+                  <input type="text" placeholder={`${character.name}에게 메시지 보내기...`} value={inputValue} onChange={(e) => setInputValue(e.target.value)} className="flex-1 min-w-0 bg-transparent text-white text-[14px] placeholder-[#555] py-3 focus:outline-none" />
+                </div>
+                <button className="w-9 h-9 bg-white rounded-full flex items-center justify-center flex-shrink-0 active:scale-95 text-[#111] transition-all shadow-sm">
+                  <svg viewBox="0 0 24 24" className="w-[20px] h-[20px]"><path fill="currentColor" d="M20.235 5.686c.432-1.195-.726-2.353-1.921-1.92L3.709 9.048c-1.199.434-1.344 2.07-.241 2.709l4.662 2.699l4.163-4.163a1 1 0 0 1 1.414 1.414L9.544 15.87l2.7 4.662c.638 1.103 2.274.957 2.708-.241z"/></svg>
                 </button>
               </div>
             </div>

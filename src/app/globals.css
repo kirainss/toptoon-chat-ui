@@ -133,3 +133,11 @@
   pointer-events: none;
   z-index: 5;
 }
+
+/* 새 컬렉션 추가 — 마칭앤트 보더 애니메이션 */ /*260403 추가*/
+@keyframes marchingAnts {
+  to { stroke-dashoffset: -26; }
+}
+.animate-marching-ants { animation: marchingAnts 0.8s linear infinite; }
+.new-collection-card { box-shadow: 0 0 16px rgba(238,44,57,.25), 0 0 4px rgba(238,44,57,.15); }
+@media (prefers-reduced-motion: reduce) { .animate-marching-ants { animation: none; } }
