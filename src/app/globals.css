@@ -135,9 +135,7 @@
 }
 
 /* 코인 차감 애니메이션 */ /*260406 추가*/
-@keyframes coinShake { 0%,100%{transform:translateX(0)} 15%{transform:translateX(-4px)} 35%{transform:translateX(3px)} 55%{transform:translateX(-2px)} 75%{transform:translateX(2px)} 90%{transform:translateX(-1px)} } /*260407 수정*/
 @keyframes coinDeductFloat { 0%{opacity:0;transform:translateX(-50%) translateY(4px) scale(0.7)} 15%{opacity:1;transform:translateX(-50%) translateY(-6px) scale(1.15)} 70%{opacity:1;transform:translateX(-50%) translateY(-44px) scale(1)} 100%{opacity:0;transform:translateX(-50%) translateY(-58px) scale(0.85)} } /*260406 수정*/
-.coin-shake { animation: coinShake 0.55s cubic-bezier(0.36,0.07,0.19,0.97); } /*260406 추가*/
 .coin-deduct-float { position:absolute; top:-4px; left:50%; animation:coinDeductFloat 1.3s cubic-bezier(0.23,1,0.32,1) forwards; pointer-events:none; z-index:50; white-space:nowrap; font-size:11px; font-weight:800; color:#f472b6; text-shadow:0 0 8px rgba(244, 114, 182, 0.8), /*260407 수정*/ 0 1px 3px rgba(0,0,0,0.5); letter-spacing:0.02em; } /*260406 추가*/
 
 /* 새 컬렉션 추가 — 마칭앤트 보더 애니메이션 */ /*260403 추가*/

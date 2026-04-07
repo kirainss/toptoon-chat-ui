@@ -47,7 +47,6 @@ export default function ChatPage() {
   const [inputValue, setInputValue] = useState("");
   const chatEndRef = useRef<HTMLDivElement>(null);
   const [coins, setCoins] = useState(44540); /*260406 추가*/
-  const [coinShaking, setCoinShaking] = useState(false); /*260406 추가*/
   const [showDeduct, setShowDeduct] = useState(false); /*260406 추가*/
   const lottieDesktopRef = useRef<any>(null); /*260406 수정*/
   const lottieMobileRef = useRef<any>(null); /*260406 수정*/
@@ -56,9 +55,7 @@ export default function ChatPage() {
 
   /* 코인 버튼 클릭 시 10코인 차감 + 로티 재생 */ /*260406 추가*/
   const handleCoinClick = () => {
-    if (coinShaking) return;
     [lottieDesktopRef, lottieMobileRef].forEach(ref => { if (ref.current) { ref.current.stop(); ref.current.play(); } }); /*260406 수정*/
-    setCoinShaking(true);
     setShowDeduct(true);
     let c = coins;
     const iv = setInterval(() => {
@@ -66,7 +63,6 @@ export default function ChatPage() {
       setCoins(c);
       if (c <= coins - 10) clearInterval(iv);
     }, 38);
-    setTimeout(() => setCoinShaking(false), 600);
     setTimeout(() => setShowDeduct(false), 1500);
   }; /*260406 추가*/
 
@@ -198,7 +194,7 @@ export default function ChatPage() {
             <div className="flex items-center gap-1.5">
               <div className="relative flex items-center gap-1.5 text-[#FACC15] px-3 py-1.5 rounded-full border border-[#EAB308]/40 cursor-pointer" style={{ background: 'linear-gradient(135deg, #3D2800, #5C3C00)' }} onClick={handleCoinClick}> {/*260407 수정*/}
                 {showDeduct && <span className="coin-deduct-float">-10 ♥</span>} {/*260406 추가*/}
-                <span className={`relative w-[18px] h-[18px] flex-shrink-0${coinShaking ? " coin-shake" : ""}`}><span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[42px] h-[42px]"><Lottie lottieRef={lottieDesktopRef} animationData={chatPointPaw} loop={false} autoplay={false} style={{ width: '100%', height: '100%' }} /></span></span> {/*260407 수정*/}
+                <span className="relative w-[18px] h-[18px] flex-shrink-0"><span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[42px] h-[42px]"><Lottie lottieRef={lottieDesktopRef} animationData={chatPointPaw} loop={false} autoplay={false} style={{ width: '100%', height: '100%' }} /></span></span> {/*260407 수정*/}
                 <span className="font-bold text-sm" style={{ fontVariantNumeric: "tabular-nums" }}>{coins.toLocaleString('en-US')}</span> {/*260406 수정*/}
               </div>
             </div>
@@ -367,7 +363,7 @@ export default function ChatPage() {
           <div className="flex items-center gap-2">
             <div className="relative flex items-center gap-1 text-[#FACC15] px-2.5 py-1 rounded-full border border-[#EAB308]/40 cursor-pointer" style={{ background: 'linear-gradient(135deg, #3D2800, #5C3C00)' }} onClick={handleCoinClick}> {/*260407 수정*/}
               {showDeduct && <span className="coin-deduct-float">-10 ♥</span>} {/*260406 추가*/}
-              <span className={`relative w-[16px] h-[16px] flex-shrink-0${coinShaking ? " coin-shake" : ""}`}><span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[38px] h-[38px]"><Lottie lottieRef={lottieMobileRef} animationData={chatPointPaw} loop={false} autoplay={false} style={{ width: '100%', height: '100%' }} /></span></span> {/*260407 수정*/}
+              <span className="relative w-[16px] h-[16px] flex-shrink-0"><span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[38px] h-[38px]"><Lottie lottieRef={lottieMobileRef} animationData={chatPointPaw} loop={false} autoplay={false} style={{ width: '100%', height: '100%' }} /></span></span> {/*260407 수정*/}
               <span className="font-bold text-[13px]" style={{ fontVariantNumeric: "tabular-nums" }}>{coins.toLocaleString('en-US')}</span> {/*260406 수정*/}
             </div>
             <button className="p-1 text-[#A3A3A3]"><MoreVertical className="w-5 h-5" /></button>
