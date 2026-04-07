@@ -198,7 +198,7 @@ export default function ChatPage() {
             <div className="flex items-center gap-1.5">
               <div className="relative flex items-center gap-1.5 text-[#FACC15] px-3 py-1.5 rounded-full border border-[#EAB308]/40 cursor-pointer" style={{ background: 'linear-gradient(135deg, #3D2800, #5C3C00)' }} onClick={handleCoinClick}> {/*260407 수정*/}
                 {showDeduct && <span className="coin-deduct-float">-10 ♥</span>} {/*260406 추가*/}
-                <span className={`relative w-[18px] h-[18px] flex-shrink-0${coinShaking ? " coin-shake" : ""}`}><span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[42px] h-[42px]"><Lottie lottieRef={lottieDesktopRef} animationData={chatPointPaw} loop={false} autoplay={true} style={{ width: '100%', height: '100%' }} /></span></span> {/*260407 수정*/}
+                <span className={`relative w-[18px] h-[18px] flex-shrink-0${coinShaking ? " coin-shake" : ""}`}><span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[42px] h-[42px]"><Lottie lottieRef={lottieDesktopRef} animationData={chatPointPaw} loop={false} autoplay={false} style={{ width: '100%', height: '100%' }} /></span></span> {/*260407 수정*/}
                 <span className="font-bold text-sm" style={{ fontVariantNumeric: "tabular-nums" }}>{coins.toLocaleString('en-US')}</span> {/*260406 수정*/}
               </div>
             </div>
@@ -367,7 +367,7 @@ export default function ChatPage() {
           <div className="flex items-center gap-2">
             <div className="relative flex items-center gap-1 text-[#FACC15] px-2.5 py-1 rounded-full border border-[#EAB308]/40 cursor-pointer" style={{ background: 'linear-gradient(135deg, #3D2800, #5C3C00)' }} onClick={handleCoinClick}> {/*260407 수정*/}
               {showDeduct && <span className="coin-deduct-float">-10 ♥</span>} {/*260406 추가*/}
-              <span className={`relative w-[16px] h-[16px] flex-shrink-0${coinShaking ? " coin-shake" : ""}`}><span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[38px] h-[38px]"><Lottie lottieRef={lottieMobileRef} animationData={chatPointPaw} loop={false} autoplay={true} style={{ width: '100%', height: '100%' }} /></span></span> {/*260407 수정*/}
+              <span className={`relative w-[16px] h-[16px] flex-shrink-0${coinShaking ? " coin-shake" : ""}`}><span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[38px] h-[38px]"><Lottie lottieRef={lottieMobileRef} animationData={chatPointPaw} loop={false} autoplay={false} style={{ width: '100%', height: '100%' }} /></span></span> {/*260407 수정*/}
               <span className="font-bold text-[13px]" style={{ fontVariantNumeric: "tabular-nums" }}>{coins.toLocaleString('en-US')}</span> {/*260406 수정*/}
             </div>
             <button className="p-1 text-[#A3A3A3]"><MoreVertical className="w-5 h-5" /></button>
