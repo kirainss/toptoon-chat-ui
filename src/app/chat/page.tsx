@@ -196,7 +196,7 @@ export default function ChatPage() {
           </div>
           <div className="flex items-center gap-3 ml-auto">
             <div className="flex items-center gap-1.5">
-              <div className="relative flex items-center gap-1.5 text-[#FACC15] px-3 py-1.5 rounded-full border border-[#EAB308]/40 cursor-pointer overflow-hidden" style={{ background: 'linear-gradient(135deg, #3D2800, #5C3C00)' }} onClick={handleCoinClick}> {/*260407 수정*/}
+              <div className="relative flex items-center gap-1.5 text-[#FACC15] px-3 py-1.5 rounded-full border border-[#EAB308]/40 cursor-pointer" style={{ background: 'linear-gradient(135deg, #3D2800, #5C3C00)' }} onClick={handleCoinClick}> {/*260407 수정*/}
                 {showDeduct && <span className="coin-deduct-float">-10 ♥</span>} {/*260406 추가*/}
                 <span className={`relative w-[18px] h-[18px] flex-shrink-0${coinShaking ? " coin-shake" : ""}`}><span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[42px] h-[42px]"><Lottie lottieRef={lottieDesktopRef} animationData={chatPointPaw} loop={false} autoplay={true} style={{ width: '100%', height: '100%' }} /></span></span> {/*260407 수정*/}
                 <span className="font-bold text-sm" style={{ fontVariantNumeric: "tabular-nums" }}>{coins.toLocaleString('en-US')}</span> {/*260406 수정*/}
