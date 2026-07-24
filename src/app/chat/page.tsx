@@ -1,8 +1,8 @@
-﻿"use client";
+"use client";
 
 import { ChevronDown, ChevronLeft, Lock, Eye, MessageCircle, Heart, Pencil, Image as ImageIcon, MoreVertical } from "lucide-react";
 import React, { useState, useRef, useEffect } from "react";
-import Lottie from "lottie-react"; /*260406 添加*/
+import Lottie, { type LottieRefCurrentProps } from "lottie-react"; /*260406 添加*/
 import chatPointPaw from "../../../public/json/chatPoint-paw.json"; /*260406 添加*/
 
 const character = {
@@ -16,8 +16,6 @@ const character = {
 };
 
 interface ChatMsg { type: "character" | "user" | "narration"; content: string; }
-type LottiePlayerRef = { stop: () => void; play: () => void };
-
 const chatMessages: ChatMsg[] = [
   { type: "narration", content: "她歪着头，对你的奇怪话语露出疑惑的表情，随后轻声抱怨起来。" },
   { type: "character", content: "突然说什么呢? 你刚才在想别的事吗? 哥哥真坏..." },
@@ -49,8 +47,8 @@ export default function ChatPage() {
   const chatEndRef = useRef<HTMLDivElement>(null);
   const [coins, setCoins] = useState(44540); /*260406 添加*/
   const [showDeduct, setShowDeduct] = useState(false); /*260406 添加*/
-  const lottieDesktopRef = useRef<LottiePlayerRef | null>(null); /*260406 修改*/
-  const lottieMobileRef = useRef<LottiePlayerRef | null>(null); /*260406 修改*/
+  const lottieDesktopRef = useRef<LottieRefCurrentProps | null>(null); /*260406 修改*/
+  const lottieMobileRef = useRef<LottieRefCurrentProps | null>(null); /*260406 修改*/
 
   useEffect(() => { chatEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, []);
 
