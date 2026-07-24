@@ -18,7 +18,7 @@ import Script from "next/script";
 
 
 export const metadata: Metadata = {
-  title: "탑툰 챗",
+  title: "Toptoon 聊天",
   description: "TOPTOON CHAT",
 };
 
@@ -28,23 +28,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const NavItems = [
-    { icon: Home, label: "홈", href: "/" },
-    { icon: Compass, label: "탐색", href: "/new" },
-    { icon: MessageCircle, label: "내 채팅", href: "/chat" },
-    { icon: Heart, label: "즐겨찾기", href: "#" },
-    { icon: Grid, label: "컬렉션", href: "/collection" },
-    { icon: Settings, label: "설정", href: "#" },
+    { icon: Home, label: "首页", href: "/" },
+    { icon: Compass, label: "探索", href: "/new" },
+    { icon: MessageCircle, label: "我的聊天", href: "/chat" },
+    { icon: Heart, label: "收藏夹", href: "#" },
+    { icon: Grid, label: "收藏集", href: "/collection" },
+    { icon: Settings, label: "设置", href: "#" },
   ];
 
   const recentChats = [
-    { name: "서나리", msg: "순간 놀란 듯 눈을 살짝 크게 뜨고...", img: "/images/thumb-char-05.jpg" },
-    { name: "김가을", msg: "살이 딱딱해지며 다리가 비틀...", img: "/images/thumb-char-02.jpg" },
-    { name: "신아영", "msg": "작은 목소리를 내며 몸을 동그...", img: "/images/thumb-char-01.jpg" },
-    { name: "배현주", msg: "허리를 살짝 틀며 허리의 마디가...", img: "/images/thumb-char-04.jpg" },
+    { name: "徐娜莉", msg: "她像是被吓到般微微睁大眼睛...", img: "/images/thumb-char-05.jpg" },
+    { name: "金佳乙", msg: "她身体僵住，双腿微微发颤...", img: "/images/thumb-char-02.jpg" },
+    { name: "申雅英", "msg": "她用很轻的声音蜷起身体...", img: "/images/thumb-char-01.jpg" },
+    { name: "裴贤珠", msg: "她轻轻侧过腰，语气变得柔和...", img: "/images/thumb-char-04.jpg" },
   ];
 
   return (
-    <html lang="ko" className="dark scroll-smooth">
+    <html lang="zh-CN" className="dark scroll-smooth">
       <body className="bg-[#121212] text-slate-100 antialiased font-sans">
         <Script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" strategy="lazyOnload" />
         <div className="flex h-[100dvh] overflow-hidden bg-[#0A0A0A]">
@@ -70,7 +70,7 @@ export default function RootLayout({
             </nav>
 
             <div className="mt-8 px-6 mb-2">
-              <span className="text-[11px] font-medium text-[#737373]">마이페이지</span>
+              <span className="text-[11px] font-medium text-[#737373]">我的页面</span>
             </div>
             <nav className="space-y-1 px-3 mb-6">
               {NavItems.slice(2).map((item) => (
@@ -88,12 +88,12 @@ export default function RootLayout({
             <div className="px-3 mb-6">
               <Link href="#" className="flex items-center gap-4 px-3 py-3 rounded-lg font-medium text-[#A3A3A3] hover:text-white hover:bg-white/5 transition-colors border-t border-white/5 pt-5 mt-2">
                 <ExternalLink className="w-5 h-5" />
-                <span className="text-sm">탑툰 바로가기</span>
+                <span className="text-sm">前往 Toptoon</span>
               </Link>
             </div>
 
             <div className="mt-2 px-6 mb-2">
-              <span className="text-[11px] font-medium text-[#737373]">최근 대화</span>
+              <span className="text-[11px] font-medium text-[#737373]">最近对话</span>
             </div>
             <div className="px-3 pb-8">
               {recentChats.map((chat) => (
@@ -131,7 +131,7 @@ export default function RootLayout({
                 <Search className="w-4 h-4 text-[#737373] absolute left-4 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
-                  placeholder="캐릭터, 태그, 작품 검색..."
+                  placeholder="搜索角色、标签、作品..."
                   className="w-full bg-[#1A1A1A] text-sm text-white placeholder-[#737373] rounded-full py-2.5 pl-11 pr-4 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all"
                 />
                 <div className="absolute right-3 top-1/2 -translate-y-1/2 bg-[#2A2A2A] text-[#A3A3A3] text-[10px] px-1.5 py-0.5 rounded font-mono">CRTL K</div>
@@ -156,10 +156,10 @@ export default function RootLayout({
           {/* Mobile Bottom Tab Bar */}
           <nav className="md:hidden fixed bottom-0 left-0 w-full bg-[#0A0A0A] border-t border-white/5 flex justify-around items-center pt-2 pb-[env(safe-area-inset-bottom,1rem)] z-50">
             {[
-              { icon: Home, label: "홈", href: "/" },
-              { icon: Compass, label: "탐색", href: "/new" },
-              { icon: Send, label: "채팅", href: "/chat" },
-              { icon: User, label: "프로필", href: "#" }
+              { icon: Home, label: "首页", href: "/" },
+              { icon: Compass, label: "探索", href: "/new" },
+              { icon: Send, label: "聊天", href: "/chat" },
+              { icon: User, label: "资料", href: "#" }
             ].map((item, i) => (
               <Link key={item.label} href={item.href} className={`flex flex-col items-center gap-1 p-2 ${i === 0 ? "text-white" : "text-[#737373]"}`}>
                 <item.icon className={`w-5 h-5 ${i === 0 && "fill-current"}`} />

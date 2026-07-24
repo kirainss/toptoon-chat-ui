@@ -11,7 +11,7 @@ export default function CollectionDetailPage({ params }: { params: { id: string 
   const [progressWidth, setProgressWidth] = useState(0);
 
   const characterInfo = {
-    name: "신아영",
+    name: "申雅英",
     totalImages: 142,
     collected: 3,
     remaining: 139,
@@ -35,18 +35,18 @@ export default function CollectionDetailPage({ params }: { params: { id: string 
   const endingCollections = [
     {
       id: 1,
-      title: "달콤한 밤",
-      sub: "루트 A 완주",
+      title: "甜蜜之夜",
+      sub: "路线 A 完成",
       icon: <Heart className="w-5 h-5 text-[#00d084] fill-[#00d084]" />,
       active: true,
       borderColor: "border-[#00d084]/50",
       textColor: "text-[#00d084]",
-      badge: "완주"
+      badge: "完成"
     },
     {
       id: 2,
       title: "???",
-      sub: "조건 미달성",
+      sub: "条件未达成",
       icon: <Star className="w-5 h-5 text-white/20 fill-white/20" />,
       active: false,
       borderColor: "border-[rgba(255,255,255,0.08)]",
@@ -56,7 +56,7 @@ export default function CollectionDetailPage({ params }: { params: { id: string 
     {
       id: 3,
       title: "???",
-      sub: "히든 루트 필요",
+      sub: "需要隐藏路线",
       icon: <Gem className="w-5 h-5 text-white/20 fill-white/20" />,
       active: false,
       borderColor: "border-[rgba(255,255,255,0.08)]",
@@ -65,8 +65,8 @@ export default function CollectionDetailPage({ params }: { params: { id: string 
     },
     {
       id: 4,
-      title: "시크릿 엔딩",
-      sub: "전 루트 완주 시 해금",
+      title: "秘密结局",
+      sub: "完成所有路线后解锁",
       icon: <Sparkles className="w-5 h-5 text-white fill-white" />,
       active: false,
       borderColor: "border-[#D8B4FE]/50",
@@ -77,10 +77,10 @@ export default function CollectionDetailPage({ params }: { params: { id: string 
 
   const galleryImages = [
     { id: 1, img: "/images/thumb-char-default-07.jpg", unlocked: true, badge: "" },
-    { id: 2, img: "/images/thumb-char-default-08.jpg", unlocked: true, badge: "프리미엄" },
-    { id: 3, img: "/images/thumb-char-default-07.jpg", unlocked: true, badge: "익스클루시브" },
-    { id: 4, img: "/images/thumb-char-default-08.jpg", unlocked: true, badge: "로얄" },
-    { id: 5, img: "/images/thumb-char-05.jpg", unlocked: true, badge: "로얄" },
+    { id: 2, img: "/images/thumb-char-default-08.jpg", unlocked: true, badge: "高级" },
+    { id: 3, img: "/images/thumb-char-default-07.jpg", unlocked: true, badge: "独家" },
+    { id: 4, img: "/images/thumb-char-default-08.jpg", unlocked: true, badge: "皇家" },
+    { id: 5, img: "/images/thumb-char-05.jpg", unlocked: true, badge: "皇家" },
     { id: 6, img: "/images/thumb-char-06.jpg", unlocked: false, badge: "" },
     { id: 7, img: "/images/thumb-char-01.jpg", unlocked: false, badge: "" },
     { id: 8, img: "/images/thumb-char-default-08.jpg", unlocked: false, badge: "" },
@@ -118,12 +118,12 @@ export default function CollectionDetailPage({ params }: { params: { id: string 
             <div className="flex flex-col justify-center translate-y-[-2px]">
               <div className="flex items-center gap-1 text-[#00d084] mb-1">
                 <Clock className="w-3.5 h-3.5" />
-                <span className="text-[12px] font-bold">최근 활성 2일 전</span>
+                <span className="text-[12px] font-bold">最近活跃于 2 天前</span>
               </div>
-              <h1 className="text-[18px] md:text-[20px] font-bold text-white tracking-tight leading-none">{characterInfo.name}의 시크릿 컬렉션</h1>
+              <h1 className="text-[18px] md:text-[20px] font-bold text-white tracking-tight leading-none">{characterInfo.name}的秘密收藏集</h1>
             </div>
             <button className="bg-[#00d084] hover:bg-[#00e392] text-[#121212] px-3 py-1 md:px-5 md:py-1.5 rounded-full text-[12px] md:text-[13px] font-bold transition-colors shadow-[0_2px_8px_rgba(0,208,132,0.4)] whitespace-nowrap">
-              대화 이어하기
+              继续聊天
             </button>
           </div>
         </div>
@@ -154,14 +154,14 @@ export default function CollectionDetailPage({ params }: { params: { id: string 
             <div className="flex items-center gap-3 md:gap-4">
               <div className="flex items-center gap-1.5">
                 <div className="w-[6px] h-[6px] md:w-[7px] md:h-[7px] rounded-full bg-[#38bdf8]" />
-                <span><strong className="text-[#38bdf8]">{characterInfo.collected}</strong> / {characterInfo.totalImages} 수집</span>
+                <span><strong className="text-[#38bdf8]">{characterInfo.collected}</strong> / {characterInfo.totalImages} 已收集</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <LockKeyhole className="w-3.5 h-3.5 md:w-4 md:h-4 text-[#737373]" />
-                <span>{characterInfo.remaining}장 미수집</span>
+                <span>{characterInfo.remaining} 张未收集</span>
               </div>
             </div>
-            <div className="font-bold text-[#38bdf8] text-[13px] md:text-[15px]">달성률 {characterInfo.progress}%</div>
+            <div className="font-bold text-[#38bdf8] text-[13px] md:text-[15px]">达成率 {characterInfo.progress}%</div>
           </div>
         </div>
 
@@ -170,31 +170,31 @@ export default function CollectionDetailPage({ params }: { params: { id: string 
           <div className="bg-[#121212] rounded-full px-3 py-1.5 flex items-center justify-center shadow-inner">
             <span className="text-[11px] font-bold text-[#A3A3A3] flex items-center gap-1">
               <Box className="w-3 h-3" />
-              전체 <strong className="text-[#00d084] ml-0.5">{characterInfo.all}</strong>
+              全部 <strong className="text-[#00d084] ml-0.5">{characterInfo.all}</strong>
             </span>
           </div>
           <div className="bg-[#121212] rounded-full px-3 py-1.5 flex items-center justify-center shadow-inner">
             <span className="text-[11px] font-bold text-[#A3A3A3] flex items-center gap-1">
               <Droplets className="w-3 h-3" />
-              무료 <strong className="text-[#00d084] ml-0.5">{characterInfo.free}</strong>
+              免费 <strong className="text-[#00d084] ml-0.5">{characterInfo.free}</strong>
             </span>
           </div>
           <div className="bg-[#121212] rounded-full px-3 py-1.5 flex items-center justify-center shadow-inner">
             <span className="text-[11px] font-bold text-[#A3A3A3] flex items-center gap-1">
               <CheckCircle2 className="w-3 h-3" />
-              프리미엄 <strong className="text-[#00d084] ml-0.5">{characterInfo.premium}</strong>
+              高级 <strong className="text-[#00d084] ml-0.5">{characterInfo.premium}</strong>
             </span>
           </div>
           <div className="bg-[#121212] rounded-full px-3 py-1.5 flex items-center justify-center shadow-inner">
             <span className="text-[11px] font-bold text-[#A3A3A3] flex items-center gap-1">
               <Gem className="w-3 h-3" />
-              익스클루시브 <strong className="text-[#00d084] ml-0.5">{characterInfo.exclusive}</strong>
+              独家 <strong className="text-[#00d084] ml-0.5">{characterInfo.exclusive}</strong>
             </span>
           </div>
           <div className="bg-[#121212] rounded-full px-3 py-1.5 flex items-center justify-center shadow-inner">
             <span className="text-[11px] font-bold text-[#A3A3A3] flex items-center gap-1">
               <Crown className="w-3 h-3 text-[#D8B4FE]" />
-              로얄 <strong className="text-[#00d084] ml-0.5">{characterInfo.royal}</strong>
+              皇家 <strong className="text-[#00d084] ml-0.5">{characterInfo.royal}</strong>
             </span>
           </div>
         </div>
@@ -203,7 +203,7 @@ export default function CollectionDetailPage({ params }: { params: { id: string 
       {/* Ending Collection Section */}
       <section className="mb-10 stagger-item" style={{ animationDelay: '200ms' }}>
         <div className="flex items-center gap-2 mb-4 px-1 relative">
-          <h2 className="text-[16px] font-bold text-white tracking-tight">엔딩 컬렉션</h2>
+          <h2 className="text-[16px] font-bold text-white tracking-tight">结局收藏</h2>
           <div className="relative flex items-center">
             <button
               onClick={() => setShowRouteMap(!showRouteMap)}
@@ -218,7 +218,7 @@ export default function CollectionDetailPage({ params }: { params: { id: string 
                 onClick={() => setShowRouteMap(true)}
                 className="group absolute left-full ml-3 px-3 py-1 bg-[#1A1A1A] border border-white/20 text-white text-[12px] font-bold rounded-md shadow-lg whitespace-nowrap cursor-pointer z-10 hover:bg-[#262626] transition-colors flex items-center justify-center"
               >
-                루트 맵 보기
+                查看路线图
                 <div className="absolute top-1/2 -left-[4.5px] -translate-y-1/2 w-2 h-2 bg-[#1A1A1A] border-l border-b border-white/20 rotate-45 group-hover:bg-[#262626] transition-colors"></div>
               </div>
             )}
@@ -228,7 +228,7 @@ export default function CollectionDetailPage({ params }: { params: { id: string 
         {/* Route Map Panel (Animated) */}
         <div className={`overflow-hidden transition-all duration-500 ease-in-out ${showRouteMap ? 'max-h-[300px] opacity-100 mb-6' : 'max-h-0 opacity-0 mb-0'}`}>
           <div className="w-full bg-[#1A1A1A] rounded-2xl p-5 border border-[rgba(255,255,255,0.08)] shadow-inner">
-            <h3 className="text-[13px] font-bold text-[rgba(255,255,255,0.6)] mb-6 tracking-tight">루트 맵</h3>
+            <h3 className="text-[13px] font-bold text-[rgba(255,255,255,0.6)] mb-6 tracking-tight">路线图</h3>
 
             {/* Timeline graphic */}
             <div className="relative flex items-center justify-between w-full mb-8 px-2 md:px-6">
@@ -249,13 +249,13 @@ export default function CollectionDetailPage({ params }: { params: { id: string 
             {/* Route Badges */}
             <div className="flex flex-wrap items-center gap-2">
               <div className="bg-[#053d26] border border-[#00d084]/20 text-[#00d084] text-[11px] font-bold px-3 py-1.5 rounded-md shadow-inner">
-                루트 A 진행 중
+                路线 A 进行中
               </div>
               <div className="bg-[#262626] text-[#737373] text-[11px] font-bold px-3 py-1.5 rounded-md shadow-inner border border-[rgba(255,255,255,0.08)]">
-                루트 B 미개봉
+                路线 B 未开放
               </div>
               <div className="bg-[#3b2159] text-[#D8B4FE] text-[11px] font-bold px-3 py-1.5 rounded-md shadow-inner flex items-center gap-1.5 border border-[#D8B4FE]/20">
-                히든 루트 <Lock className="w-3 h-3" />
+                隐藏路线 <Lock className="w-3 h-3" />
               </div>
             </div>
           </div>
@@ -288,7 +288,7 @@ export default function CollectionDetailPage({ params }: { params: { id: string 
       {/* Gallery Section */}
       <section className="stagger-item" style={{ animationDelay: '300ms' }}>
         <div className="mb-4 px-1">
-          <h2 className="text-[16px] font-bold text-white tracking-tight">씬 갤러리</h2>
+          <h2 className="text-[16px] font-bold text-white tracking-tight">场景画廊</h2>
         </div>
 
         <div className="grid grid-cols-3 gap-2 md:gap-3">
@@ -313,9 +313,9 @@ export default function CollectionDetailPage({ params }: { params: { id: string 
               )}
 
               {item.badge && (
-                <div className={`absolute top-2 left-2 px-2.5 py-[3px] rounded-full text-[10px] font-bold shadow-md z-20 ${item.badge === '프리미엄' ? 'bg-[#4A3626] text-[#FACC15]' :
-                  item.badge === '익스클루시브' ? 'bg-[#1F3523] text-[#4ade80]' :
-                    item.badge === '로얄' ? 'bg-[#3b2159] text-[#D8B4FE]' : ''
+                <div className={`absolute top-2 left-2 px-2.5 py-[3px] rounded-full text-[10px] font-bold shadow-md z-20 ${item.badge === '高级' ? 'bg-[#4A3626] text-[#FACC15]' :
+                  item.badge === '独家' ? 'bg-[#1F3523] text-[#4ade80]' :
+                    item.badge === '皇家' ? 'bg-[#3b2159] text-[#D8B4FE]' : ''
                   }`}>
                   {item.badge}
                 </div>

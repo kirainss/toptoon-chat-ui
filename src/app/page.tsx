@@ -7,7 +7,7 @@ export default function Home() {
   const fireRef = useRef<HTMLDivElement>(null);
   const newBadgeRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Lottie 애니메이션 로드 (Fire.json + New.json)
+  // 加载 Lottie 动画 (Fire.json + New.json)
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -32,14 +32,14 @@ export default function Home() {
     };
   }, []);
 
-  // 배너 슬라이드 데이터
+  // 横幅轮播数据
   const bannerSlides = [
-    { img: "/mp4/hero-bnr-04.mp4", badge: "신규캐릭터", title: "버리지 말아 주세요,\n주인님...", sub: "<이세계 밀프헌터> 세실리아", promo: false }, /*260326 수정*/
-    { img: "/mp4/hero-bnr-03.mp4", badge: "신규캐릭터", title: "저한테 이러시면\n안 되는 거잖아요!!", sub: "<집주인 딸내미> 장선영", promo: false }, /*260326 수정*/
-    { img: "/mp4/hero-bnr-01.mp4", badge: "인기캐릭터", title: "오빠가 오늘 밤\n책임져 주세요", sub: "<무선 연결 오나홀> 신아영", promo: false }, /*260326 수정*/
-    { img: "/mp4/hero-bnr-02.mp4", badge: "인기캐릭터", title: "나한테 중요한 건\n네 행복이야", sub: "<건물주 누나> 서나리", promo: false }, /*260326 수정*/
-    { img: "/mp4/hero-bnr-05.mp4", badge: "인기캐릭터", title: "오늘 남편은 출장이야...\n들어올래?", sub: "<세트업> 배현주", promo: false }, /*260326 수정*/
-    { img: "/mp4/hero-bnr-06.mp4", badge: "인기캐릭터", title: "오빠, 요가 하는데...\n자세 좀 봐줄 수 있어요?", sub: "<무선 연결 오나홀> 윤혜윤", promo: false }, /*260326 수정*/
+    { img: "/mp4/hero-bnr-04.mp4", badge: "新角色", title: "请不要丢下我，\n主人...", sub: "<异世界猎人> 塞西莉亚", promo: false }, /*260326 修改*/
+    { img: "/mp4/hero-bnr-03.mp4", badge: "新角色", title: "你不能这样\n对我吧!!", sub: "<房东的女儿> 张善英", promo: false }, /*260326 修改*/
+    { img: "/mp4/hero-bnr-01.mp4", badge: "热门角色", title: "哥哥，今晚\n要负责哦", sub: "<无线连接> 申雅英", promo: false }, /*260326 修改*/
+    { img: "/mp4/hero-bnr-02.mp4", badge: "热门角色", title: "对我来说最重要的是\n你的幸福", sub: "<房东姐姐> 徐娜莉", promo: false }, /*260326 修改*/
+    { img: "/mp4/hero-bnr-05.mp4", badge: "热门角色", title: "今天丈夫出差...\n要进来吗?", sub: "<套装> 裴贤珠", promo: false }, /*260326 修改*/
+    { img: "/mp4/hero-bnr-06.mp4", badge: "热门角色", title: "哥哥，我在练瑜伽...\n能帮我看下姿势吗?", sub: "<无线连接> 尹慧允", promo: false }, /*260326 修改*/
     { img: "/images/mainbnr-promo-01.jpg", poster: "", badge: "", title: "", sub: "", promo: true },
     { img: "/images/mainbnr-promo-02.jpg", poster: "", badge: "", title: "", sub: "", promo: true },
     { img: "/images/mainbnr-promo-03.jpg", poster: "", badge: "", title: "", sub: "", promo: true },
@@ -59,7 +59,7 @@ export default function Home() {
   const [transitionOn, setTransitionOn] = useState(true);
   const bannerIndex = ((slidePos - 3) % bannerCount + bannerCount) % bannerCount;
 
-  /* animated webp canvas 로직 제거 - mp4 video로 대체 */ /*260325 수정*/
+  /* 移除 animated webp canvas 逻辑，改用 mp4 video */ /*260325 修改*/
 
   const goNext = useCallback(() => { setTransitionOn(true); setSlidePos(p => p + 1); }, []);
   const goPrev = useCallback(() => { setTransitionOn(true); setSlidePos(p => p - 1); }, []);
@@ -111,46 +111,46 @@ export default function Home() {
   }, [slidePos, goNext, goPrev]);
 
   const popularCharacters = [
-    { id: 1, name: "신아영", quote: `"제발 멈춰줘요... 남들이 보..."`, chats: "9.6천", views: "5.1만", img: "/images/thumb-char-01.jpg" },
-    { id: 2, name: "배현주", quote: `"네가 해주는 마사지, 정말..."`, chats: "6.1천", views: "3.7만", img: "/images/thumb-char-02.jpg" },
-    { id: 3, name: "서나리", quote: `"오빠... 오늘 안전한 날이야..."`, chats: "4.3천", views: "2.6만", img: "/images/thumb-char-03.jpg" },
-    { id: 4, name: "배현주", quote: `"네가 해주는 마사지, 정말..."`, chats: "4만", views: "2.2만", img: "/images/thumb-char-04.jpg" },
-    { id: 5, name: "서나리", quote: `"딱 일주일만이야... 알겠지?"`, chats: "3.3천", views: "2.0만", img: "/images/thumb-char-05.jpg" },
-    { id: 6, name: "김가을", quote: `"나 예뻐? 나랑 놀래?"`, chats: "2.1천", views: "1.2만", img: "/images/thumb-char-01.jpg" },
-    { id: 7, name: "유은희", quote: `"오늘은 누나가 널 놓치지 않..."`, chats: "4.9천", views: "4.2천", img: "/images/thumb-char-02.jpg" },
-    { id: 8, name: "베르디아", quote: `"주인... 당신... 이런 일이에요..."`, chats: "1.2만", views: "5.6천", img: "/images/thumb-char-03.jpg" },
+    { id: 1, name: "申雅英", quote: `"拜托停下... 别人会看见..."`, chats: "9.6千", views: "5.1万", img: "/images/thumb-char-01.jpg" },
+    { id: 2, name: "裴贤珠", quote: `"你按得真的很舒服..."`, chats: "6.1千", views: "3.7万", img: "/images/thumb-char-02.jpg" },
+    { id: 3, name: "徐娜莉", quote: `"哥哥... 今天是安全的日子..."`, chats: "4.3千", views: "2.6万", img: "/images/thumb-char-03.jpg" },
+    { id: 4, name: "裴贤珠", quote: `"你按得真的很舒服..."`, chats: "4万", views: "2.2万", img: "/images/thumb-char-04.jpg" },
+    { id: 5, name: "徐娜莉", quote: `"就一周... 知道了吗?"`, chats: "3.3千", views: "2.0万", img: "/images/thumb-char-05.jpg" },
+    { id: 6, name: "金佳乙", quote: `"我漂亮吗? 要和我玩吗?"`, chats: "2.1千", views: "1.2万", img: "/images/thumb-char-01.jpg" },
+    { id: 7, name: "刘恩熙", quote: `"今天姐姐不会放开你..."`, chats: "4.9千", views: "4.2千", img: "/images/thumb-char-02.jpg" },
+    { id: 8, name: "贝尔蒂亚", quote: `"主人... 您... 怎么会这样..."`, chats: "1.2万", views: "5.6千", img: "/images/thumb-char-03.jpg" },
   ];
 
   const newCharacters = [
-    { id: 1007, name: "김가을", badge: "NEW", sub: "약점을 잡혀버린 갑질 유부녀", quote: `"오빠... 여기 좀 뜨거운 것 같지 않아?"`, tags: ["#츤데레", "#비밀연애"], imgFront: "/images/thumb-char-default-07.jpg", imgBack: "/images/thumb-char-flip-07.jpg" },
-    { id: 1008, name: "서나리", badge: "NEW", sub: "순수한 척 위험한 후배", quote: `"딱 일주일만이야... 알겠지?"`, tags: ["#청순", "#비밀"], imgFront: "/images/thumb-char-default-08.jpg", imgBack: "/images/thumb-char-flip-08.jpg" },
-    { id: 1009, name: "김가을", badge: "NEW", sub: "비밀을 간직한 동기", quote: `"오빠... 여기 좀 뜨거운 것 같지 않아?"`, tags: ["#츤데레", "#비밀연애"], imgFront: "/images/thumb-char-default-07.jpg", imgBack: "/images/thumb-char-flip-07.jpg" },
-    { id: 1010, name: "서나리", badge: "NEW", sub: "밤마다 찾아오는 이웃", quote: `"딱 일주일만이야... 알겠지?"`, tags: ["#청순", "#비밀"], imgFront: "/images/thumb-char-default-08.jpg", imgBack: "/images/thumb-char-flip-08.jpg" },
-    { id: 1011, name: "김가을", badge: "NEW", sub: "참을 수 없는 동거녀", quote: `"오빠... 여기 좀 뜨거운 것 같지 않아?"`, tags: ["#츤데레", "#비밀연애"], imgFront: "/images/thumb-char-default-07.jpg", imgBack: "/images/thumb-char-flip-07.jpg" },
+    { id: 1007, name: "金佳乙", badge: "NEW", sub: "被抓住弱点的强势人妻", quote: `"哥哥... 这里是不是有点热?"`, tags: ["#傲娇", "#秘密恋爱"], imgFront: "/images/thumb-char-default-07.jpg", imgBack: "/images/thumb-char-flip-07.jpg" },
+    { id: 1008, name: "徐娜莉", badge: "NEW", sub: "装作清纯的危险后辈", quote: `"就一周... 知道了吗?"`, tags: ["#清纯", "#秘密"], imgFront: "/images/thumb-char-default-08.jpg", imgBack: "/images/thumb-char-flip-08.jpg" },
+    { id: 1009, name: "金佳乙", badge: "NEW", sub: "藏着秘密的同事", quote: `"哥哥... 这里是不是有点热?"`, tags: ["#傲娇", "#秘密恋爱"], imgFront: "/images/thumb-char-default-07.jpg", imgBack: "/images/thumb-char-flip-07.jpg" },
+    { id: 1010, name: "徐娜莉", badge: "NEW", sub: "每晚来访的邻居", quote: `"就一周... 知道了吗?"`, tags: ["#清纯", "#秘密"], imgFront: "/images/thumb-char-default-08.jpg", imgBack: "/images/thumb-char-flip-08.jpg" },
+    { id: 1011, name: "金佳乙", badge: "NEW", sub: "无法抗拒的同居人", quote: `"哥哥... 这里是不是有点热?"`, tags: ["#傲娇", "#秘密恋爱"], imgFront: "/images/thumb-char-default-07.jpg", imgBack: "/images/thumb-char-flip-07.jpg" },
   ];
 
   const allCharacters = [
-    { id: 101, name: "신아영", quote: `"제발 멈춰줘요... 남들이 보..."`, chats: "1.4만", views: "13만", img: "/images/thumb-char-01.jpg" },
-    { id: 102, name: "한나리", quote: `"누나랑 하루 종일 침대에서..."`, chats: "8.6천", views: "8.5만", img: "/images/thumb-char-02.jpg" },
-    { id: 103, name: "윤혜윤", quote: `"오빠... 오늘 안전한 날이야..."`, chats: "5.9천", views: "3.9만", img: "/images/thumb-char-03.jpg" },
-    { id: 104, name: "배현주", quote: `"이번엔... 누가 봐도 내가..."`, chats: "5.8천", views: "3.8만", img: "/images/thumb-char-04.jpg" },
-    { id: 105, name: "서나리", quote: `"딱 1퍼센트라도 좋으니까..."`, chats: "5.2천", views: "4.2만", img: "/images/thumb-char-05.jpg" },
-    { id: 106, name: "김가을", quote: `"나 예쁘고 귀여워? 근데..."`, chats: "4.8천", views: "3.4만", img: "/images/thumb-char-01.jpg" },
-    { id: 107, name: "이예린", quote: `"학생 한 번 할 때 마, 몇 번이나..."`, chats: "2.7천", views: "1.5만", img: "/images/thumb-char-02.jpg" },
-    { id: 108, name: "박다영", quote: `"부장님 믿고... 그냥 내 이름 불러줘..."`, chats: "1.8천", views: "9.5천", img: "/images/thumb-char-03.jpg" },
-    { id: 109, name: "베르디아", quote: `"우웅... 당신... 이쁜 일이에요..."`, chats: "1.7천", views: "1만", img: "/images/thumb-char-04.jpg" },
-    { id: 110, name: "유세하", quote: `"너... 내 몸에 대체 무슨 수작질을..."`, chats: "1.8천", views: "8.4천", img: "/images/thumb-char-01.jpg" },
-    { id: 111, name: "허민", quote: `"도대체 이딴 새끼랑 왜 수준이 맞춰..."`, chats: "1천", views: "73천", img: "/images/thumb-char-05.jpg" },
-    { id: 112, name: "서하리", quote: `"어디에 있든 너만 있으면 즐거울..."`, chats: "833", views: "5.3천", img: "/images/thumb-char-02.jpg" },
-    { id: 113, name: "강수아", badge: "NEW", quote: `"내가 해줄 수 있는 건..."`, chats: "1.2만", views: "9.2만", img: "/images/thumb-char-03.jpg" },
-    { id: 114, name: "최미나", badge: "NEW", quote: `"오빠, 비밀인 거 알죠?"`, chats: "9.1천", views: "6.4만", img: "/images/thumb-char-01.jpg" },
-    { id: 115, name: "윤설아", badge: "NEW", quote: `"오늘 밤은 절대 못 보낼 줄..."`, chats: "7.7천", views: "5.2만", img: "/images/thumb-char-02.jpg" },
-    { id: 116, name: "정다은", badge: "", quote: `"이렇게 가까운 건 처음..."`, chats: "6.5천", views: "4.1만", img: "/images/thumb-char-04.jpg" },
-    { id: 117, name: "조아라", badge: "", quote: `"부끄러워하지 마요..."`, chats: "5.2천", views: "3.8만", img: "/images/thumb-char-05.jpg" },
-    { id: 118, name: "김태희", badge: "NEW", quote: `"내일이면 늦을지도..."`, chats: "4.3천", views: "2.9만", img: "/images/thumb-char-03.jpg" },
+    { id: 101, name: "申雅英", quote: `"拜托停下... 别人会看见..."`, chats: "1.4万", views: "13万", img: "/images/thumb-char-01.jpg" },
+    { id: 102, name: "韩娜莉", quote: `"和姐姐一整天待在床上..."`, chats: "8.6千", views: "8.5万", img: "/images/thumb-char-02.jpg" },
+    { id: 103, name: "尹慧允", quote: `"哥哥... 今天是安全的日子..."`, chats: "5.9千", views: "3.9万", img: "/images/thumb-char-03.jpg" },
+    { id: 104, name: "裴贤珠", quote: `"这次... 不管谁看都是我..."`, chats: "5.8千", views: "3.8万", img: "/images/thumb-char-04.jpg" },
+    { id: 105, name: "徐娜莉", quote: `"哪怕只有 1% 也好..."`, chats: "5.2千", views: "4.2万", img: "/images/thumb-char-05.jpg" },
+    { id: 106, name: "金佳乙", quote: `"我漂亮又可爱吧? 可是..."`, chats: "4.8千", views: "3.4万", img: "/images/thumb-char-01.jpg" },
+    { id: 107, name: "李艺琳", quote: `"学生一次能做多少次..."`, chats: "2.7千", views: "1.5万", img: "/images/thumb-char-02.jpg" },
+    { id: 108, name: "朴多英", quote: `"相信部长... 直接叫我的名字..."`, chats: "1.8千", views: "9.5千", img: "/images/thumb-char-03.jpg" },
+    { id: 109, name: "贝尔蒂亚", quote: `"嗯... 你... 真会讨人喜欢..."`, chats: "1.7千", views: "1万", img: "/images/thumb-char-04.jpg" },
+    { id: 110, name: "刘世荷", quote: `"你... 到底对我的身体做了什么..."`, chats: "1.8千", views: "8.4千", img: "/images/thumb-char-01.jpg" },
+    { id: 111, name: "许敏", quote: `"到底为什么要和这种人合拍..."`, chats: "1千", views: "73千", img: "/images/thumb-char-05.jpg" },
+    { id: 112, name: "徐夏莉", quote: `"无论在哪里，只要有你就开心..."`, chats: "833", views: "5.3千", img: "/images/thumb-char-02.jpg" },
+    { id: 113, name: "姜秀雅", badge: "NEW", quote: `"我能为你做的事..."`, chats: "1.2万", views: "9.2万", img: "/images/thumb-char-03.jpg" },
+    { id: 114, name: "崔美娜", badge: "NEW", quote: `"哥哥，要保密哦?"`, chats: "9.1千", views: "6.4万", img: "/images/thumb-char-01.jpg" },
+    { id: 115, name: "尹雪雅", badge: "NEW", quote: `"今晚绝不会放你走..."`, chats: "7.7千", views: "5.2万", img: "/images/thumb-char-02.jpg" },
+    { id: 116, name: "郑多恩", badge: "", quote: `"第一次离得这么近..."`, chats: "6.5千", views: "4.1万", img: "/images/thumb-char-04.jpg" },
+    { id: 117, name: "赵雅拉", badge: "", quote: `"别害羞..."`, chats: "5.2千", views: "3.8万", img: "/images/thumb-char-05.jpg" },
+    { id: 118, name: "金泰熙", badge: "NEW", quote: `"到明天可能就晚了..."`, chats: "4.3千", views: "2.9万", img: "/images/thumb-char-03.jpg" },
   ];
 
-  const categories = ["전체", "로맨스", "판타지", "드라마"];
+  const categories = ["全部", "恋爱", "奇幻", "剧情"];
 
   const popScrollRef = useRef<HTMLDivElement>(null);
   const [showPopLeft, setShowPopLeft] = useState(false);
@@ -192,7 +192,7 @@ export default function Home() {
 
   const cardImgs = newCharacters.map(c => c.imgFront);
   const cardAnims = newCharacters.map(() => "");
-  /* 카드 플립 주석처리 250320
+  /* 卡片翻转暂时注释 250320
   const [cardImgs, setCardImgs] = useState(() => newCharacters.map(c => c.imgFront));
   const [cardAnims, setCardAnims] = useState(() => newCharacters.map(() => ""));
   const flipCard = useCallback((idx: number, targetImg: string) => {
@@ -251,7 +251,7 @@ export default function Home() {
           >
             {extSlides.map((slide, i) => (
               <div key={i} className="relative w-full h-full" style={{ flex: "0 0 100%" }}>
-                {slide.img.endsWith(".mp4") ? ( /*260325 수정*/
+                {slide.img.endsWith(".mp4") ? ( /*260325 修改*/
                   <video src={slide.img} preload="auto" className="absolute inset-0 w-full h-full object-cover object-top" loop muted playsInline draggable={false} onLoadedMetadata={e => { (e.currentTarget as HTMLVideoElement).currentTime = 0.001; }} onStalled={e => { const v = e.currentTarget; if (!v.paused) { v.load(); v.play().catch(() => {}); } }} ref={el => { if (!el) return; if (i === slidePos) { el.play().catch(() => {}); } else { el.pause(); el.currentTime = 0.001; } }} />
                 ) : (
                   <img src={slide.img} alt={slide.badge} className="absolute inset-0 w-full h-full object-cover object-top" draggable={false} />
@@ -261,9 +261,9 @@ export default function Home() {
           </div>
           {!bannerSlides[bannerIndex].promo && (
             <>
-              <div className="absolute inset-x-0 bottom-0 h-[38%] bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/60 to-transparent pointer-events-none" /> {/*260327 수정 — 그라데이션 높이 축소*/}
-              <div className="absolute bottom-5 left-5 flex flex-col gap-1.5 pointer-events-none z-10"> {/*260325 수정*/}
-                <span className={`${bannerSlides[bannerIndex].badge === "신규캐릭터" ? "badge-new" : "bg-black"} text-white text-[10px] font-bold px-2 py-0.5 rounded w-fit`}>{bannerSlides[bannerIndex].badge}</span> {/*260326 수정*/}
+              <div className="absolute inset-x-0 bottom-0 h-[38%] bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/60 to-transparent pointer-events-none" /> {/*260327 修改 - 降低渐变高度*/}
+              <div className="absolute bottom-5 left-5 flex flex-col gap-1.5 pointer-events-none z-10"> {/*260325 修改*/}
+                <span className={`${bannerSlides[bannerIndex].badge === "新角色" ? "badge-new" : "bg-black"} text-white text-[10px] font-bold px-2 py-0.5 rounded w-fit`}>{bannerSlides[bannerIndex].badge}</span> {/*260326 修改*/}
                 <h2 className="text-[20px] font-semibold text-white leading-tight mt-1 drop-shadow-md whitespace-pre-line break-keep">{bannerSlides[bannerIndex].title}</h2>
                 <p className="text-[#D4D4D4] text-[11px] font-medium drop-shadow">{bannerSlides[bannerIndex].sub}</p>
               </div>
@@ -278,14 +278,14 @@ export default function Home() {
 
         {/* Desktop Banner Carousel */}
         <section
-          className="hidden md:block w-full mb-14 mt-4 overflow-hidden py-6" /*260325 수정*/
+          className="hidden md:block w-full mb-14 mt-4 overflow-hidden py-6" /*260325 修改*/
           onMouseDown={handleMouseDown}
 
         >
           <div
-            className="flex gap-0 w-full" /*260325 수정*/
+            className="flex gap-0 w-full" /*260325 修改*/
             style={{
-              transform: `translateX(${25 - slidePos * 50}%)`, /*260325 수정*/
+              transform: `translateX(${25 - slidePos * 50}%)`, /*260325 修改*/
               transition: transitionOn ? "transform 0.5s ease-in-out" : "none",
             }}
             onTransitionEnd={handleSlideEnd}
@@ -297,9 +297,9 @@ export default function Home() {
                   key={i}
                   onClick={() => handleCardClick(i)}
                   className={`relative flex-shrink-0 rounded-2xl overflow-hidden cursor-pointer bg-[#1A1A1A] select-none transition-all duration-500 ease-in-out ${isActive ? "ring-1 ring-white/10 z-10" : "opacity-50 hover:opacity-70"}`}
-                  style={{ width: "50%", maxWidth: "750px", aspectRatio: "750 / 390", transform: isActive ? "scale(1.1)" : "scale(0.85)" }} /*260325 수정*/
+                  style={{ width: "50%", maxWidth: "750px", aspectRatio: "750 / 390", transform: isActive ? "scale(1.1)" : "scale(0.85)" }} /*260325 修改*/
                 >
-                  {slide.img.endsWith(".mp4") ? ( /*260325 수정*/
+                  {slide.img.endsWith(".mp4") ? ( /*260325 修改*/
                     <video src={slide.img} preload="auto" className="absolute inset-0 w-full h-full object-cover" loop muted playsInline draggable={false} onLoadedMetadata={e => { (e.currentTarget as HTMLVideoElement).currentTime = 0.001; }} onStalled={e => { const v = e.currentTarget; if (!v.paused) { v.load(); v.play().catch(() => {}); } }} ref={el => { if (!el) return; if (isActive) { el.play().catch(() => {}); } else { el.pause(); el.currentTime = 0; } }} />
                   ) : (
                     <img src={slide.img} alt={slide.badge} className="absolute inset-0 w-full h-full object-cover" loading={isActive ? undefined : "lazy"} draggable={false} />
@@ -309,8 +309,8 @@ export default function Home() {
                     <>
                       <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/60 to-transparent" />
                       <div className="absolute bottom-6 left-6 lg:bottom-8 lg:left-8 flex flex-col gap-1.5 lg:gap-2 z-10 w-fit pointer-events-none">
-                        <span className={`${slide.badge === "신규캐릭터" ? "badge-new" : "bg-black"} text-white text-[10px] lg:text-[11px] font-bold px-2 py-0.5 rounded w-fit`}>{slide.badge}</span>
-                        <h2 className="text-lg lg:text-2xl font-semibold text-white leading-tight tracking-tight mt-1 whitespace-pre-line">{slide.title}</h2> {/*260325 수정*/}
+                        <span className={`${slide.badge === "新角色" ? "badge-new" : "bg-black"} text-white text-[10px] lg:text-[11px] font-bold px-2 py-0.5 rounded w-fit`}>{slide.badge}</span>
+                        <h2 className="text-lg lg:text-2xl font-semibold text-white leading-tight tracking-tight mt-1 whitespace-pre-line">{slide.title}</h2> {/*260325 修改*/}
                         <p className="text-[#D4D4D4] text-sm lg:text-base font-medium">{slide.sub}</p>
                       </div>
                     </>
@@ -319,7 +319,7 @@ export default function Home() {
               );
             })}
           </div>
-          <div className="flex justify-center items-center gap-1.5 mt-8"> {/*260325 수정*/}
+          <div className="flex justify-center items-center gap-1.5 mt-8"> {/*260325 修改*/}
             {bannerSlides.map((_, i) => (
               <span key={i} onClick={() => goTo(i)} className={`rounded-full transition-all duration-300 cursor-pointer ${i === bannerIndex ? "w-5 h-1.5 bg-white" : "w-1.5 h-1.5 bg-white/40"}`} />
             ))}
@@ -331,16 +331,16 @@ export default function Home() {
           <section>
             <div className="mb-3 md:mb-6 flex items-center gap-2">
               <div className="flex items-center gap-1">
-                <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight">인기 캐릭터</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight">热门角色</h3>
                 <div ref={fireRef} className="w-6 h-6 -mt-1 md:w-7 md:h-7 opacity-90" />
               </div>
-              <p className="hidden md:block text-[13px] text-[#A3A3A3] font-medium">지금까지 <span className="text-white font-bold">14,242</span>번의 화끈한 대화가 오갔어요</p>
+              <p className="hidden md:block text-[13px] text-[#A3A3A3] font-medium">目前已产生 <span className="text-white font-bold">14,242</span> 次热烈对话</p>
               <div className="flex items-center gap-1.5 ml-auto">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E50914] opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E50914]"></span>
                 </span>
-                <span className="text-[13px] text-[#A3A3A3] font-medium">지금 <span className="text-white font-bold">1,247</span>명이 빠져드는 중</span>
+                <span className="text-[13px] text-[#A3A3A3] font-medium">现在有 <span className="text-white font-bold">1,247</span> 人沉浸其中</span>
               </div>
             </div>
 
@@ -357,9 +357,9 @@ export default function Home() {
                       <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#0A0A0A]/95 via-[#0A0A0A]/40 to-transparent pointer-events-none" />
                       <div className="absolute inset-x-0 bottom-0 top-0 bg-gradient-to-t from-[#0A0A0A]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-                      <div className="absolute bottom-0 w-full p-2.5 md:p-3.5 flex flex-col justify-end pointer-events-none"> {/*260326 수정*/}
+                      <div className="absolute bottom-0 w-full p-2.5 md:p-3.5 flex flex-col justify-end pointer-events-none"> {/*260326 修改*/}
                         <h4 className="font-bold text-white text-base md:text-[17px] mb-0.5 leading-snug">{char.name}</h4>
-                        <p className="text-[11px] md:text-xs text-[#A3A3A3] line-clamp-1 mb-1 md:mb-2 font-medium"> {/*260326 수정*/}
+                        <p className="text-[11px] md:text-xs text-[#A3A3A3] line-clamp-1 mb-1 md:mb-2 font-medium"> {/*260326 修改*/}
                           {char.quote}
                         </p>
                         <div className="flex items-center gap-2.5 text-[10px] md:text-[11px] text-[#737373] font-semibold">
@@ -393,14 +393,14 @@ export default function Home() {
         </div>
       </div>
 
-      {/* New Characters Section - 풀 너비 배경 */}
+      {/* 新角色区域 - 全宽背景 */}
       <div className="w-full bg-[#1a1a1a] py-6 md:py-10 mt-10">
         <div className="w-full max-w-[1232px] mx-auto px-5 md:px-8 lg:px-10">
           <div className="mb-3 md:mb-4 flex items-center gap-2">
             <div className="flex items-center gap-1">
-              <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight">신규 캐릭터 ✨</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight">新角色 ✨</h3>
             </div>
-            <p className="text-[13px] text-[#A3A3A3] font-medium ml-auto md:ml-0">그녀의 첫 대화 상대가 되어주세요!</p>
+            <p className="text-[13px] text-[#A3A3A3] font-medium ml-auto md:ml-0">成为她的第一位聊天对象吧!</p>
           </div>
 
           <div className="relative group/newlist w-full">
@@ -417,7 +417,7 @@ export default function Home() {
                   <div className="relative aspect-[3/4.2] rounded-xl bg-[#1A1A1A] overflow-hidden" style={{ perspective: '800px' }}>
                     <img src={cardImgs[charIdx]} alt={char.name} className={`absolute inset-0 w-full h-full object-cover ${cardAnims[charIdx]}`} />
 
-                    {/* 고정 정보 영역 (플립 영향 없음) */}
+                    {/* 固定信息区域，不受翻转影响 */}
                     <div className="absolute inset-0 pointer-events-none z-10">
                       <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#0A0A0A]/95 via-[#0A0A0A]/40 to-transparent" />
 
@@ -427,9 +427,9 @@ export default function Home() {
                         <div ref={el => { newBadgeRefs.current[charIdx] = el; }} className="w-full h-full" />
                       </div>
 
-                      <div className="absolute bottom-0 w-full p-2.5 md:p-4"> {/*260326 수정*/}
+                      <div className="absolute bottom-0 w-full p-2.5 md:p-4"> {/*260326 修改*/}
                         <h4 className="font-bold text-white text-[17px] md:text-[19px] mb-0.5 leading-snug drop-shadow-md">{char.name}</h4>
-                        <p className="text-[11px] md:text-[12px] font-bold mb-1 md:mb-2">{char.sub}</p> {/*260326 수정*/}
+                        <p className="text-[11px] md:text-[12px] font-bold mb-1 md:mb-2">{char.sub}</p> {/*260326 修改*/}
                         <div className="flex flex-wrap gap-1.5">
                           {char.tags?.map(tag => (
                             <span key={tag} className="text-[9px] md:text-[10px] text-[#A3A3A3] bg-white/5 px-1.5 py-0.5 rounded-sm border border-white/5 font-bold backdrop-blur-sm">
@@ -461,7 +461,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* All Characters Section - max-width 컨테이너 재시작 */}
+      {/* 全部角色区域 - 重新开始 max-width 容器 */}
       <div className="w-full max-w-[1232px] mx-auto px-5 md:px-8 lg:px-10 overflow-hidden">
         <div className="space-y-12 w-full pt-12">
           {/* All Characters Section (Grid) */}

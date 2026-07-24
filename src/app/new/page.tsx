@@ -5,17 +5,17 @@ import { useRef, useState, useCallback } from "react";
 
 export default function NewPage() {
   const newCharacters = [
-    { id: 2001, name: "김가을", sub: "약점을 잡혀버린 갑질 유부녀", quote: `"오빠... 여기 좀 뜨거운 것 같지 않아?"`, tags: ["#츤데레", "#비밀연애", "#유부녀"], chats: "2.1천", views: "1.2만", daysAgo: 1, imgFront: "/images/thumb-char-default-07.jpg", imgBack: "/images/thumb-char-flip-07.jpg" },
-    { id: 2002, name: "서나리", sub: "순수한 척 위험한 후배", quote: `"딱 일주일만이야... 알겠지?"`, tags: ["#청순", "#비밀", "#후배"], chats: "1.8천", views: "9.5천", daysAgo: 1, imgFront: "/images/thumb-char-default-08.jpg", imgBack: "/images/thumb-char-flip-08.jpg" },
-    { id: 2003, name: "강수아", sub: "밤마다 찾아오는 이웃", quote: `"내가 해줄 수 있는 건 뭐든 해줄게..."`, tags: ["#이웃", "#야행성", "#글래머"], chats: "1.2만", views: "9.2만", daysAgo: 2, imgFront: "/images/thumb-char-03.jpg", imgBack: "/images/thumb-char-flip-07.jpg" },
-    { id: 2004, name: "최미나", sub: "참을 수 없는 동거녀", quote: `"오빠, 비밀인 거 알죠?"`, tags: ["#동거", "#비밀", "#글래머"], chats: "9.1천", views: "6.4만", daysAgo: 3, imgFront: "/images/thumb-char-01.jpg", imgBack: "/images/thumb-char-flip-08.jpg" },
-    { id: 2005, name: "윤설아", sub: "비밀을 간직한 동기", quote: `"오늘 밤은 절대 못 보낼 줄 알았는데..."`, tags: ["#동기", "#순수", "#반전매력"], chats: "7.7천", views: "5.2만", daysAgo: 3, imgFront: "/images/thumb-char-02.jpg", imgBack: "/images/thumb-char-flip-07.jpg" },
-    { id: 2006, name: "김태희", sub: "끝내주게 위험한 선배", quote: `"내일이면 늦을지도 몰라..."`, tags: ["#선배", "#카리스마", "#비밀연애"], chats: "4.3천", views: "2.9만", daysAgo: 5, imgFront: "/images/thumb-char-04.jpg", imgBack: "/images/thumb-char-flip-08.jpg" },
-    { id: 2007, name: "박다영", sub: "낮에는 천사, 밤에는 악마", quote: `"부장님 믿고... 그냥 내 이름 불러줘..."`, tags: ["#직장", "#반전", "#섹시"], chats: "1.8천", views: "9.5천", daysAgo: 7, imgFront: "/images/thumb-char-05.jpg", imgBack: "/images/thumb-char-flip-07.jpg" },
-    { id: 2008, name: "이예린", sub: "순진한 얼굴 뒤에 숨겨진 욕망", quote: `"학생 한 번 할 때 마, 몇 번이나..."`, tags: ["#학생", "#반전", "#도발"], chats: "2.7천", views: "1.5만", daysAgo: 7, imgFront: "/images/thumb-char-06.jpg", imgBack: "/images/thumb-char-flip-08.jpg" },
+    { id: 2001, name: "金佳乙", sub: "被抓住弱点的强势人妻", quote: `"哥哥... 这里是不是有点热?"`, tags: ["#傲娇", "#秘密恋爱", "#人妻"], chats: "2.1千", views: "1.2万", daysAgo: 1, imgFront: "/images/thumb-char-default-07.jpg", imgBack: "/images/thumb-char-flip-07.jpg" },
+    { id: 2002, name: "徐娜莉", sub: "装作清纯的危险后辈", quote: `"就一周... 知道了吗?"`, tags: ["#清纯", "#秘密", "#后辈"], chats: "1.8千", views: "9.5千", daysAgo: 1, imgFront: "/images/thumb-char-default-08.jpg", imgBack: "/images/thumb-char-flip-08.jpg" },
+    { id: 2003, name: "姜秀雅", sub: "每晚来访的邻居", quote: `"只要是我能做的，什么都可以..."`, tags: ["#邻居", "#夜行动物", "#丰满"], chats: "1.2万", views: "9.2万", daysAgo: 2, imgFront: "/images/thumb-char-03.jpg", imgBack: "/images/thumb-char-flip-07.jpg" },
+    { id: 2004, name: "崔美娜", sub: "无法抗拒的同居人", quote: `"哥哥，要保密哦?"`, tags: ["#同居", "#秘密", "#丰满"], chats: "9.1千", views: "6.4万", daysAgo: 3, imgFront: "/images/thumb-char-01.jpg", imgBack: "/images/thumb-char-flip-08.jpg" },
+    { id: 2005, name: "尹雪雅", sub: "藏着秘密的同事", quote: `"我还以为今晚绝对见不到你了..."`, tags: ["#同事", "#清纯", "#反差魅力"], chats: "7.7千", views: "5.2万", daysAgo: 3, imgFront: "/images/thumb-char-02.jpg", imgBack: "/images/thumb-char-flip-07.jpg" },
+    { id: 2006, name: "金泰熙", sub: "极具危险感的前辈", quote: `"明天可能就晚了..."`, tags: ["#前辈", "#气场", "#秘密恋爱"], chats: "4.3千", views: "2.9万", daysAgo: 5, imgFront: "/images/thumb-char-04.jpg", imgBack: "/images/thumb-char-flip-08.jpg" },
+    { id: 2007, name: "朴多英", sub: "白天是天使，夜晚是恶魔", quote: `"相信部长... 直接叫我的名字..."`, tags: ["#职场", "#反差", "#性感"], chats: "1.8千", views: "9.5千", daysAgo: 7, imgFront: "/images/thumb-char-05.jpg", imgBack: "/images/thumb-char-flip-07.jpg" },
+    { id: 2008, name: "李艺琳", sub: "天真面孔背后的欲望", quote: `"学生一次能做多少次..."`, tags: ["#学生", "#反差", "#挑逗"], chats: "2.7千", views: "1.5万", daysAgo: 7, imgFront: "/images/thumb-char-06.jpg", imgBack: "/images/thumb-char-flip-08.jpg" },
   ];
 
-  /* 카드 플립 */
+  /* 卡片翻转 */
   const [cardImgs, setCardImgs] = useState(() => newCharacters.map(c => c.imgFront));
   const [cardAnims, setCardAnims] = useState(() => newCharacters.map(() => ""));
   const flipCard = useCallback((idx: number, targetImg: string) => {
@@ -39,8 +39,8 @@ export default function NewPage() {
     flipCard(idx, newCharacters[idx].imgFront);
   }, [flipCard]);
 
-  /* 정렬 필터 */
-  const filters = ["최신순", "인기순", "대화 많은 순"];
+  /* 排序筛选 */
+  const filters = ["最新", "最热门", "对话最多"];
   const [activeFilter, setActiveFilter] = useState(0);
 
   return (
@@ -53,10 +53,10 @@ export default function NewPage() {
           <span className="text-[13px] md:text-sm text-[#EE2C39] font-bold tracking-wide uppercase">Just Arrived</span>
         </div>
         <h1 className="stagger-item text-[28px] md:text-[38px] font-bold text-white leading-[1.2] tracking-tight mb-3" style={{ textWrap: "balance" }}>
-          신규 캐릭터
+          新角色
         </h1>
         <p className="stagger-item text-[14px] md:text-base text-white/55 leading-relaxed max-w-md" style={{ textWrap: "pretty" }}>
-          새롭게 등장한 캐릭터들을 만나보세요. 그녀의 첫 대화 상대가 되어주세요!
+          认识全新登场的角色。成为她的第一位聊天对象吧!
         </p>
       </section>
 
@@ -115,7 +115,7 @@ export default function NewPage() {
               <div className="absolute top-3 right-3 z-10">
                 <span className="inline-flex items-center gap-1 text-[10px] text-white/50 font-medium bg-black/40 backdrop-blur-sm px-2 py-0.5 rounded-md">
                   <Clock className="w-3 h-3" />
-                  <span style={{ fontVariantNumeric: "tabular-nums" }}>{char.daysAgo}일 전</span>
+                  <span style={{ fontVariantNumeric: "tabular-nums" }}>{char.daysAgo} 天前</span>
                 </span>
               </div>
 
@@ -148,7 +148,7 @@ export default function NewPage() {
 
             {/* CTA Button */}
             <button className="mt-3 w-full flex items-center justify-center gap-2 bg-[#1A1A1A] hover:bg-[#222] text-white/80 hover:text-white text-[12px] md:text-[13px] font-bold py-2.5 rounded-xl shadow-[0_0_0_1px_rgba(255,255,255,0.06)] hover:shadow-[0_0_0_1px_rgba(255,255,255,0.1)] transition-[background-color,color,box-shadow,transform] duration-150 ease-out active:scale-[0.96]">
-              대화 시작하기
+              开始聊天
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
@@ -158,10 +158,10 @@ export default function NewPage() {
       {/* Bottom CTA */}
       <div className="stagger-item mt-14 md:mt-20 flex flex-col items-center text-center pb-10">
         <p className="text-[13px] text-white/35 font-medium mb-4" style={{ textWrap: "balance" }}>
-          더 많은 캐릭터가 곧 등장합니다
+          更多角色即将登场
         </p>
         <button className="px-8 py-3 bg-[#EE2C39] hover:bg-[#D42531] text-white text-[14px] font-bold rounded-xl shadow-[0_4px_16px_rgba(238,44,57,0.3)] hover:shadow-[0_6px_20px_rgba(238,44,57,0.4)] transition-[background-color,box-shadow,transform] duration-150 ease-out active:scale-[0.96]">
-          전체 캐릭터 보기
+          查看全部角色
         </button>
       </div>
     </div>

@@ -12,15 +12,15 @@ export default function CollectionPage() {
   }, []);
 
   const characters = [
-    { id: 1, name: "신아영", count: 3, img: "/images/thumb-char-01.jpg", portrait: "/images/thumb-char-01.jpg" },
-    { id: 2, name: "윤혜윤", count: 1, img: "/images/thumb-char-02.jpg", portrait: "/images/thumb-char-02.jpg" },
-    { id: 3, name: "한나리", count: 10, img: "/images/thumb-char-03.jpg", portrait: "/images/thumb-char-03.jpg" },
-    { id: 4, name: "김가을", count: 5, img: "/images/thumb-char-default-07.jpg", portrait: "/images/thumb-char-default-07.jpg" },
-    { id: 5, name: "서나리", count: 3, img: "/images/thumb-char-05.jpg", portrait: "/images/thumb-char-05.jpg" },
-    { id: 6, name: "배현주", count: 5, img: "/images/thumb-char-04.jpg", portrait: "/images/thumb-char-04.jpg" },
-    { id: 7, name: "한수진", count: 1, img: "/images/thumb-char-default-08.jpg", portrait: "/images/thumb-char-default-08.jpg" },
-    { id: 8, name: "장선영", count: 6, img: "/images/thumb-char-flip-07.jpg", portrait: "/images/thumb-char-flip-07.jpg" },
-    { id: 9, name: "은혜", count: 1, img: "/images/thumb-char-flip-08.jpg", portrait: "/images/thumb-char-flip-08.jpg" },
+    { id: 1, name: "申雅英", count: 3, img: "/images/thumb-char-01.jpg", portrait: "/images/thumb-char-01.jpg" },
+    { id: 2, name: "尹慧允", count: 1, img: "/images/thumb-char-02.jpg", portrait: "/images/thumb-char-02.jpg" },
+    { id: 3, name: "韩娜莉", count: 10, img: "/images/thumb-char-03.jpg", portrait: "/images/thumb-char-03.jpg" },
+    { id: 4, name: "金佳乙", count: 5, img: "/images/thumb-char-default-07.jpg", portrait: "/images/thumb-char-default-07.jpg" },
+    { id: 5, name: "徐娜莉", count: 3, img: "/images/thumb-char-05.jpg", portrait: "/images/thumb-char-05.jpg" },
+    { id: 6, name: "裴贤珠", count: 5, img: "/images/thumb-char-04.jpg", portrait: "/images/thumb-char-04.jpg" },
+    { id: 7, name: "韩秀珍", count: 1, img: "/images/thumb-char-default-08.jpg", portrait: "/images/thumb-char-default-08.jpg" },
+    { id: 8, name: "张善英", count: 6, img: "/images/thumb-char-flip-07.jpg", portrait: "/images/thumb-char-flip-07.jpg" },
+    { id: 9, name: "恩惠", count: 1, img: "/images/thumb-char-flip-08.jpg", portrait: "/images/thumb-char-flip-08.jpg" },
   ];
 
   const totalImages = characters.reduce((acc, curr) => acc + curr.count, 0);
@@ -30,11 +30,11 @@ export default function CollectionPage() {
       
       {/* Header Area */}
       <div className="mb-8">
-        <h1 className="text-[28px] md:text-[32px] font-bold text-white tracking-tight mb-2">컬렉션</h1>
-        <p className="text-[14px] text-[#A3A3A3] font-medium mb-6">채팅에서 해금한 일러스트를 모아보세요</p>
+        <h1 className="text-[28px] md:text-[32px] font-bold text-white tracking-tight mb-2">收藏集</h1>
+        <p className="text-[14px] text-[#A3A3A3] font-medium mb-6">查看你在聊天中解锁的插画</p>
         
         <div className="text-[13px] text-[#737373] font-medium">
-          캐릭터 {characters.length}명 · 총 {totalImages}장
+          角色 {characters.length} 名 · 共 {totalImages} 张
         </div>
       </div>
 
@@ -65,7 +65,7 @@ export default function CollectionPage() {
                   <span className="text-[14px] font-bold text-white leading-tight mb-0.5 shadow-black drop-shadow-md">{char.name}</span>
                   <div className="flex items-center gap-1 text-[#A3A3A3] text-[11px] font-medium drop-shadow-md group-hover:text-white transition-colors">
                     <ImageIcon className="w-3 h-3" />
-                    <span>{char.count}장</span>
+                    <span>{char.count} 张</span>
                   </div>
                 </div>
               </div>
